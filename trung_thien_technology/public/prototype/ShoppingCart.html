@@ -1,0 +1,204 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../src/css/Mega.css">
+
+</head>
+<body>
+<div class="container news-page">
+    <div id="breadcrumb">
+        <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a href="/" itemprop="item">
+                    <span itemprop="name">Trang chủ</span>
+                </a> <i class="fa fa-angle-right"></i>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a href="" itemprop="item" class="current">
+                    <span itemprop="name"><h1>Giỏ hàng</h1></span>
+                </a>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </div>
+    <div class="clearfix"></div>
+    <div class="bg-white overflow-hidden">
+        <table id="tbl-cart-item">
+            <thead>
+            <tr>
+                <td width="600">Sản phẩm</td>
+                <td>Đơn giá</td>
+                <td>Số lượng</td>
+                <td>Thành tiền</td>
+                <td onclick="deleteAllCart()">Xóa</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="item js-item-row" data-variant_id="0" data-item_id="22669" data-item_type="product">
+                <td>
+                    <img src="/media/product/120_22669_gogeta_02.png"
+                         style="vertical-align: middle; margin-right: 10px; float:left; width:100px;">
+                    <div style="margin-left:120px; padding-right:20px;">
+                        <a href="/pc-mega-gogeta.html" style="text-decoration:none; padding-top:10px; display:block;">
+                            PC MEGA GOGETA
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <input type="hidden" class="bulk_price_config" value="[]">
+                    <input type="hidden" class="buy-price" value="26900000">
+                    <span class="js-show-buy-price">26.900.000 đ</span>
+                </td>
+                <td>
+                    <input value="1" class="buy-quantity quantity-change text-center" size="5">
+                </td>
+                <td><b class="price">
+                    <span class="total-item-price">26.900.000</span> đ
+                </b></td>
+                <td><a href="javascript:void(0)" class="delete-from-cart"><i class="fa fa-trash-o"
+                                                                             aria-hidden="true"></i></a></td>
+            </tr>
+            <tr class="item js-item-row" data-variant_id="0" data-item_id="24387" data-item_type="product">
+                <td>
+                    <img src="/media/product/120_24387_pc_easy_gaming_100hz_01.png"
+                         style="vertical-align: middle; margin-right: 10px; float:left; width:100px;">
+                    <div style="margin-left:120px; padding-right:20px;">
+                        <a href="/pc-easy-gaming-100hz.html"
+                           style="text-decoration:none; padding-top:10px; display:block;">
+                            PC Easy Gaming 100hz
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <input type="hidden" class="bulk_price_config" value="[]">
+                    <input type="hidden" class="buy-price" value="8140000">
+                    <span class="js-show-buy-price">8.140.000 đ</span>
+                </td>
+                <td>
+                    <input value="1" class="buy-quantity quantity-change text-center" size="5">
+                </td>
+                <td><b class="price">
+                    <span class="total-item-price">8.140.000</span> đ
+                </b></td>
+                <td><a href="javascript:void(0)" class="delete-from-cart"><i class="fa fa-trash-o"
+                                                                             aria-hidden="true"></i></a></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="5" align="right" class="pr-2">
+                    <b>Tổng tiền:</b>
+                    <b class="total-cart-price text-18">49.030.000</b> đ<br>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="bg-white overflow-hidden mt-3 p-3">
+        <form method="post" enctype="multipart/form-data" action="/send-cart" onsubmit="return check_field()">
+            <div class="row" id="cart-step2">
+                <div class="col-4">
+                    <h3>Thông tin người mua</h3>
+                    <p class="text-12">Để tiếp tục đặt hàng, quý khách xin vui lòng nhập thông tin bên dưới</p>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-12">Họ tên*</label>
+                        <div class="col-md-9 col-12"><input type="text" name="user_info[name]" id="buyer_name" value=""
+                                                            class="form-control"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-12">SĐT*</label>
+                        <div class="col-md-9 col-12"><input type="text" name="user_info[tel]" id="buyer_tel" value=""
+                                                            class="form-control"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-12">Email*</label>
+                        <div class="col-md-9 col-12"><input type="text" name="user_info[email]" id="buyer_email"
+                                                            value="" class="form-control"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-12">Địa chỉ*</label>
+                        <div class="col-md-9 col-12"><textarea name="user_info[address]" id="buyer_address"
+                                                               class="form-control" row="3"></textarea></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-12">Ghi chú</label>
+                        <div class="col-md-9 col-12"><textarea name="user_info[note]" class="form-control"
+                                                               row="3"></textarea></div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h3>Phương thức thanh toán</h3>
+                    <table>
+                        <tbody>
+                        <tr id="pay-1">
+                            <td valign="top"><input type="radio" id="pay_method1" name="pay_method" value="1"
+                                                    class="pay_option" checked="" style="vertical-align:middle"></td>
+                            <td valign="top">
+                                <label for="pay_method1">Thanh toán tiền mặt khi nhận hàng (tiền mặt / chuyển
+                                    khoản)</label>
+                                <div class="pay_content" style="display:none;">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="pay-2">
+                            <td valign="top"><input type="radio" id="pay_method2" name="pay_method" value="2"
+                                                    class="pay_option" style="vertical-align:middle"></td>
+                            <td valign="top">
+                                <label for="pay_method2">Thanh toán qua chuyển khoản qua tài khoản ngân hàng (khuyên
+                                    dùng)</label>
+                                <div class="pay_content" style="display:none;">
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="box-popup-cart-pay">
+                        <div class="box-popup-alepay hide">
+                            <p>Trước khi thực hiện đặt hàng và thanh toán online quý khách vui lòng liên hệ nhân viên tư
+                                vấn để kiểm tra tình trạng còn hàng của sản phẩm</p>
+                            <p>(Before making an order and online payment, please contact a staff to check the
+                                availability of the product)</p>
+                        </div>
+                        <div class="bg-popup hide" onclick="close_popup()"></div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h3>Tổng tiền</h3>
+                    <table width="100%" cellpadding="5">
+                        <tbody>
+                        <tr>
+                            <td>Tổng cộng</td>
+                            <td align="right"><span class="total-cart-price">49.030.000</span> đ</td>
+                        </tr>
+                        <tr>
+                            <td><b>Thành tiền</b></td>
+                            <td align="right">
+                                <div class="red"><b class="total-cart-payment text-18">49.030.000</b> đ</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="cart-btn">
+                        <button type="submit" class="btn btn-red"><i class="fa fa-check"></i> Đặt hàng</button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="send_order" value="yes">
+            <input type="hidden" id="js-total-before-fee-discount" value="49030000">
+
+            <input type="hidden" id="js-discount-voucher" value="0">
+            <input type="hidden" name="coupon_code" value="" id="js_coupon_code">
+            <input type="hidden" id="js-discount-membership" value="0">
+            <input type="hidden" name="shipping_fee" id="js-fee-shipping" value="0">
+            <input type="hidden" name="cod_fee" id="js-fee-cod" value="0">
+        </form>
+    </div>
+</div>
+</body>
+</html>
