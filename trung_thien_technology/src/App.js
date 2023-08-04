@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+
+import './css/Libs.css';
+import './css/Main.scss.css';
+import './css/Angle.css';
+import React from "react";
+
+import {Footer} from "./components/header-footer/Footer";
+import {Routes, Route} from 'react-router-dom';
+import {SideBar} from "./components/main/SideBar";
+import {Header} from "./components/header-footer/Header";
+import {Main} from "./components/main/Main";
+import {ShoppingCart} from "./components/main/ShoppingCart";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header/>
+            <Routes>
+                <Route path="/shopping-cart" element={<ShoppingCart/>}/>
+                {/*<Route path="/detail" element={<ProductDetail/>}/>*/}
+                <Route path="" element={<Main/>}/>
+            </Routes>
+            <Footer/>
+        </>
+    );
 }
 
 export default App;

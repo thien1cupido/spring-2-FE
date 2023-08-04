@@ -3,278 +3,193 @@ import React from "react";
 export function Footer() {
     return (
         <>
-            <footer className="footer">
-                <div className="container py-3">
-                    <div className="row">
-                        {/* info */}
-                        <div className="info col-12 col-md-3 mb-3">
-                            <div className="title">Thông tin liên hệ</div>
-                            {/* Showroom */}
-                            <div className="showroom">
-                                <div className="item">
-                                    <p
-                                        className="name"
-                                        data-toggle="collapse"
-                                        aria-expanded="true"
-                                        aria-controls="showroom0"
-                                    >
-                                        SHOWROOM ĐÀ NẴNG
-                                    </p>
-                                    <div className="sr-content collapse show" id="showroom0">
-                                        <p className="address">Địa chỉ: 280, Q. Sơn Trà, TP Đà Nẵng</p>
-                                        <p className="tel">079 352 123 - (0236) 2323213</p>
-                                        <div className="pb-2" />
+            <footer className="main-footer">
+                <div className="main-footer--top">
+                    <div className="container-fluid">
+                        <div className="row " style={{display:"flex",justifyContent:"center"}}>
+                            <div style={{width:"20%"}} >
+                                <div className="footer-col footer-link toggle-footer toggle-first">
+                                    <div className="footer-title">
+                                        <h4>Về Trung Thiện Technology </h4>
+                                        <span className="icon-title"></span>
                                     </div>
-                                </div>
-                                <div className="item">
-                                    <p
-                                        className="name"
-                                        data-toggle="collapse"
-                                        href="#showroom1"
-                                        aria-expanded="false"
-                                        aria-controls="showroom1"
-                                    >
-                                        TTBH CẦN THƠ
-                                    </p>
-                                    <div className="sr-content collapse " id="showroom1">
-                                        <p className="address">
-                                            Địa chỉ: 30 Nguyễn Văn Linh, P. Hưng Lợi, Q. Ninh Kiều, TP Cần
-                                            Thơ
-                                        </p>
-                                        <div className="pb-2" />
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    <p
-                                        className="name"
-                                        data-toggle="collapse"
-                                        href="#showroom2"
-                                        aria-expanded="false"
-                                        aria-controls="showroom2"
-                                    >
-                                        TTBH - ĐÀ LẠT
-                                    </p>
-                                    <div className="sr-content collapse " id="showroom2">
-                                        <p className="address">
-                                            Địa chỉ: 47C - 47D Phù Đổng Thiên Vương, P.8, Đà Lạt, Lâm Đồng
-                                        </p>
-                                        <div className="pb-2" />
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    <p
-                                        className="name"
-                                        data-toggle="collapse"
-                                        href="#showroom3"
-                                        aria-expanded="false"
-                                        aria-controls="showroom3"
-                                    >
-                                        TTBH - NHA TRANG
-                                    </p>
-                                    <div className="sr-content collapse " id="showroom3">
-                                        <p className="address">
-                                            Địa chỉ: 51 Đường Âu Cơ, P. Phước Tân, Nha Trang, Khánh Hòa
-                                        </p>
-                                        <div className="pb-2" />
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    <p
-                                        className="name"
-                                        data-toggle="collapse"
-                                        aria-expanded="false"
-                                        aria-controls="showroom4"
-                                    >
-                                        TTBH - BÌNH DƯƠNG
-                                    </p>
-                                    <div className="sr-content collapse " id="showroom4">
-                                        <p className="address">
-                                            Địa chỉ: 97K Tân Lập, P. Đông Hòa, TP. Dĩ An, Bình Dương
-                                        </p>
-                                        <div className="pb-2" />
+                                    <div className="footer-content">
+                                        <ul>
+                                            <li className="item"><a href="/pages/gioi-thieu-gearvn" title="Giới thiệu">Giới
+                                                thiệu</a></li>
+                                            <li className="item"><a href="https://tuyendung.gearvn.com/"
+                                                                    title="Tuyển dụng">Tuyển dụng</a></li>
+
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            {/* Social Links */}
-                            <div className="oneshop-social-links">
-                                <a href="https://www.facebook.com/spone.vn" className="item facebook">
-                                    <i className="fab fa-facebook-f" />
-                                </a>
-                                <a
-                                    href="https://www.youtube.com/c/SPONEoffical/"
-                                    className="item youtube"
-                                >
-                                    <i className="fab fa-youtube" />
-                                </a>
-                                <a href="" className="item instagram">
-                                    <i className="fab fa-instagram" />
-                                </a>
-                            </div>{" "}
-                        </div>
-                        {/* links */}
-                        <div className="footer-links col-12 col-md-3 mx-auto mb-3">
-                            <div
-                                className="title"
-                                data-toggle="collapse"
-                                data-target="#footer-links-1"
-                                aria-expanded="false"
-                                aria-controls="footer-links-1"
-                            >
-                                Hỗ trợ khách hàng
-                            </div>
-                            <div className="collapse" id="footer-links-1">
-                                <ul id="menu-ho-tro-khach-hang" className="menu">
-                                    <li
-                                        id="menu-item-67460"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-67460"
-                                    >
-                                        <a href="https://sp-one.vn/chinh-sach-chung/">Chính sách chung</a>
-                                    </li>
-                                    <li
-                                        id="menu-item-67462"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-67462"
-                                    >
-                                        <a href="https://sp-one.vn/chinh-sach-bao-hanh/">
-                                            Chính sách bảo hành
-                                        </a>
-                                    </li>
-                                    <li
-                                        id="menu-item-67458"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-67458"
-                                    >
-                                        <a href="https://sp-one.vn/chinh-sach-thanh-toan/">
-                                            Chính sách thanh toán
-                                        </a>
-                                    </li>
-                                    <li
-                                        id="menu-item-67459"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-67459"
-                                    >
-                                        <a href="https://sp-one.vn/chinh-sach-doi-tra-va-nhap-lai/">
-                                            Chính sách đổi trả và nhập lại
-                                        </a>
-                                    </li>
-                                    <li
-                                        id="menu-item-67457"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-67457"
-                                    >
-                                        <a href="https://sp-one.vn/chinh-sach-van-chuyen/">
-                                            Chính sách vận chuyển và giao nhận
-                                        </a>
-                                    </li>
-                                    <li
-                                        id="menu-item-67461"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-67461"
-                                    >
-                                        <a
-                                            rel="privacy-policy"
-                                            href="https://sp-one.vn/chinh-sach-bao-mat-thong-tin/"
-                                        >
-                                            Chính sách bảo mật thông tin
-                                        </a>
-                                    </li>
-                                    <li
-                                        id="menu-item-67456"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-67456"
-                                    >
-                                        <a href="https://sp-one.vn/chinh-sach-xu-ly-khieu-nai/">
-                                            Chính sách xử lý khiếu nại
-                                        </a>
-                                    </li>
-                                </ul>{" "}
-                            </div>
-                        </div>
-                        {/* links */}
-                        <div className="footer-links col-12 col-md-3 mx-auto mb-3">
-                            <div
-                                className="title"
-                                data-toggle="collapse"
-                                data-target="#footer-links-2"
-                                aria-expanded="false"
-                                aria-controls="footer-links-2"
-                            >
-                                Thông tin khuyến mãi
-                            </div>
-                            <div className="collapse" id="footer-links-2">
-                                <ul id="menu-thong-tin-khuyen-mai" className="menu">
-                                    <li
-                                        id="menu-item-67467"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-67467"
-                                    >
-                                        <a href="https://sp-one.vn/tong-hop-khuyen-mai-sp-one/">
-                                            Tổng hợp khuyến mãi Trung Thiện Technology
-                                        </a>
-                                    </li>
-                                    <li
-                                        id="menu-item-67468"
-                                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-67468"
-                                    >
-                                        <a href="https://sp-one.vn/huong-dan-tra-gop-tai-spone/">
-                                            Hướng Dẫn Trả Góp tại Trung Thiện Technology – Trả Góp 0% Với
-                                            Thẻ Tín Dụng
-                                        </a>
-                                    </li>
-                                </ul>{" "}
-                            </div>
-                        </div>
-                        {/* FB */}
-                        <div className="footer-links col-12 col-md-3 mb-3">
-                            <div
-                                className="title"
-                                data-toggle="collapse"
-                                data-target="#footer-links-3"
-                                aria-expanded="false"
-                                aria-controls="footer-links-3"
-                            >
-                                Tổng đài hỗ trợ
-                            </div>
-                            <div className="collapse" id="footer-links-3">
-                                <div className="oneshop-contact-list">
-                                    <div className="item">
-                                        <span className="group">Kinh Doanh</span>
-                                        <span className="sdt">0236 383 55 66</span>
+                            <div style={{width:"17%"}}>
+                                <div className="footer-col footer-link toggle-footer">
+                                    <div className="footer-title">
+                                        <h4>Chính sách </h4>
+                                        <span className="icon-title"></span>
                                     </div>
-                                    <div className="item">
-                                        <span className="group">Kỹ thuật bảo hành</span>
-                                        <span className="sdt">0236 383 55 68</span>
+                                    <div className="footer-content">
+                                        <ul>
+                                            <li className="item"><a href="/pages/chinh-sach-bao-hanh"
+                                                                    title="Chính sách bảo hành">Chính sách bảo hành</a>
+                                            </li>
+                                            <li className="item"><a href="/pages/huong-dan-thanh-toan-gearvn"
+                                                                    title="Chính sách thanh toán">Chính sách thanh
+                                                toán</a></li>
+                                            <li className="item"><a href="/pages/chinh-sach-giao-hang"
+                                                                    title="Chính sách giao hàng">Chính sách giao
+                                                hàng</a></li>
+                                            <li className="item"><a href="/pages/chinh-sach-bao-mat"
+                                                                    title="Chính sách bảo mật">Chính sách bảo mật</a>
+                                            </li>
+
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            {/* BCT */}
-                            <a href="http://online.gov.vn/Home/WebDetails/55878">
-                                <img
-                                    src="https://sp-one.vn/Content/themes/oneshop2021/assets/images/bct.png"
-                                    style={{ width: 180 }}
-                                    className="lazyloaded"
-                                    data-ll-status="loaded"
-                                />
-                                <noscript>
-                                    &lt;img
-                                    src="https://sp-one.vn/Content/themes/oneshop2021/assets/images/bct.png"
-                                    style="width: 180px;"&gt;
-                                </noscript>
-                            </a>
+                            <div style={{width:"15%"}}>
+                                <div className="footer-col footer-link toggle-footer">
+                                    <div className="footer-title">
+                                        <h4>Thông tin </h4>
+                                        <span className="icon-title"></span>
+                                    </div>
+                                    <div className="footer-content">
+                                        <ul>
+                                            <li className="item"><a href="/pages/he-thong-showroom-gearvn"
+                                                                    title="Hệ thống cửa hàng">Hệ thống cửa hàng</a></li>
+                                            <li className="item"><a href="/pages/he-thong-showroom-gearvn"
+                                                                    title="Trung tâm bảo hành">Trung tâm bảo hành</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style={{width:"23%"}}>
+                                <div className="footer-col footer-block toggle-footer">
+                                    <div className="footer-title"><h4>TỔNG ĐÀI HỖ TRỢ <span>(Miễn phí gọi)</span></h4>
+                                    </div>
+                                    <div className="footer-content">
+                                        <div className="list-info">
+                                            <p><span>Gọi mua: </span> <a href="tel:18006975">1800.6975 <span> (8:00 - 21:00) </span>
+                                            </a></p><p><span>CSKH: </span> <a href="tel:18006173">1800.6173<span> (8:00 - 21:00) </span>
+                                        </a></p><p><span>Email: </span> <a
+                                            href="mailto:cskh@gearvn.com">cskh@trungthien.com</a></p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style={{width:"25%"}}>
+                                <div className="footer-col footer-block toggle-footer">
+                                    <div className="footer-title"><h4>Đơn vị vận chuyển</h4></div>
+                                    <div className="footer-content">
+                                        <ul style={{display:"flex"}}>
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/ship_1.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/ship_1.png?v=247"
+                                                     alt="Hình thức vận chuyển 1" sizes="73px"/></li>
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/ship_2.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/ship_2.png?v=247"
+                                                     alt="Hình thức vận chuyển 2" sizes="73px"/></li>
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/ship_4.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/ship_4.png?v=247"
+                                                     alt="Hình thức vận chuyển 4" sizes="73px"/></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="footer-col footer-block toggle-footer">
+                                    <div className="footer-title"><h4>Cách thức thanh toán</h4></div>
+                                    <div className="footer-content">
+                                        <ul className="list-pay">
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/pay_1.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_1.png?v=247"
+                                                     alt="Phương thức thanh toán 1" sizes="73px"/></li>
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/pay_4.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_4.png?v=247"
+                                                     alt="Phương thức thanh toán 4" sizes="73px"/></li>
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/pay_5.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_5.png?v=247"
+                                                     alt="Phương thức thanh toán 5" sizes="73px"/></li>
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/pay_6.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_6.png?v=247"
+                                                     alt="Phương thức thanh toán 6" sizes="73px"/></li>
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/pay_7.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_7.png?v=247"
+                                                     alt="Phương thức thanh toán 7" sizes="73px"/></li>
+                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                     src="//theme.hstatic.net/200000722513/1001090675/14/pay_8.png?v=247"
+                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_8.png?v=247"
+                                                     alt="Phương thức thanh toán 8" sizes="73px"/></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                {/* Copyright */}
-                <div className="copyright">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xs-12 col-lg-auto px-0 px-lg-3 mb-2 mb-lg-0">
-                                © 2023 Trung Thiện Technology : Máy tính PC | Laptop cao cấp &amp;
-                                Workstation chính hãng hàng đầu Việt Nam{" "}
+                <div className="main-footer--copyright">
+                    <div className="container-fluid">
+                        <div className="line">
+                            <div className="d-flex align-items-lg-center flex-lg-nowrap flex-wrap">
+                                <h4 className="footer-title">Kết nối với chúng tôi</h4>
+                                <div className="footer-content   " style={{display:"flex",justifyContent:"space-between"}}>
+                                    <div className="social-list">
+                                        <a href="https://www.facebook.com/gearvnhcm" target="_blank" rel="nofollow">
+                                            <img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                 src="https://file.hstatic.net/200000636033/file/facebook_1_0e31d70174824ea184c759534430deec.png"
+                                                 data-src="https://file.hstatic.net/200000636033/file/facebook_1_0e31d70174824ea184c759534430deec.png"
+                                                 alt="Gearvn" sizes="220px"/>
+                                        </a>
+                                        <a href="https://www.tiktok.com/@gearvn.tiktok" target="_blank" rel="nofollow">
+                                            <img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                 src="https://file.hstatic.net/200000722513/file/tiktok-logo_fe1e020f470a4d679064cec31bc676e4.png"
+                                                 data-src="https://file.hstatic.net/200000722513/file/tiktok-logo_fe1e020f470a4d679064cec31bc676e4.png"
+                                                 alt="Gearvn" sizes="220px"/>
+                                        </a>
+                                        <a href="https://bit.ly/GearvnVideos" target="_blank" rel="nofollow">
+                                            <img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                 src="https://file.hstatic.net/200000636033/file/youtube_1_d8de1f41ca614424aca55aa0c2791684.png"
+                                                 data-src="https://file.hstatic.net/200000636033/file/youtube_1_d8de1f41ca614424aca55aa0c2791684.png"
+                                                 alt="Gearvn" sizes="220px"/>
+                                        </a>
+                                        <a href="https://gvn360.com/" target="_blank" rel="nofollow">
+                                            <img data-sizes="auto" className="lazyautosizes lazyloaded"
+                                                 src="https://file.hstatic.net/200000722513/file/2023-06-07_11.08.09_2bc09900263b4b1c8935646b4a7b2d32.jpg"
+                                                 data-src="https://file.hstatic.net/200000722513/file/2023-06-07_11.08.09_2bc09900263b4b1c8935646b4a7b2d32.jpg"
+                                                 alt="Gearvn" sizes="220px"/>
+                                        </a>
+                                        <a href="https://www.facebook.com/groups/VietnamGamingConner" target="_blank"
+                                           rel="nofollow">
+                                            <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded"
+                                                 src="https://file.hstatic.net/200000636033/file/group_1_54d23abd89b74ead806840aa9458661d.png"
+                                                 data-src="https://file.hstatic.net/200000636033/file/group_1_54d23abd89b74ead806840aa9458661d.png"
+                                                 alt="Gearvn" sizes="220px"/>
+                                        </a>
+                                    </div>
+                                    <div className="logo-footer">
+                                        <a rel="nofollow" target="_blank"
+                                           href="http://online.gov.vn/Home/WebDetails/74686">
+                                            <img src="//theme.hstatic.net/200000722513/1001090675/14/logo-bct.png?v=247"
+                                                 data-src="//theme.hstatic.net/200000722513/1001090675/14/logo-bct.png?v=247"
+                                                 className=" lazyloaded" alt="Bộ Công Thương"/>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="col-xs-12 col-lg-auto ml-auto px-0 px-lg-3">
-                                <a target="_blank" href="http://oneshop.asia/">
-                                    Cung cấp bởi: Trungthien.asia | E-commerce solutions
-                                </a>
-                            </div>
+                            <p className="d-none">Copyright © 2023 <a href="https://gearvn.com"><strong>Công ty TNHH Trung Thiện Technology</strong></a> <a href="https://www.haravan.com/?hchan=gearvn"
+                                                                   rel="nofollow"></a></p>
                         </div>
                     </div>
                 </div>
             </footer>
-
         </>
     );
 }
