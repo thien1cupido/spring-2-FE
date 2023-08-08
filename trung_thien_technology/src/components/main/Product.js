@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export function Product() {
     return (
@@ -104,11 +105,13 @@ export function Product() {
                                 />
                             </div>
                             <h3 className="p-name">
-                                <a href="/laptop-acer-aspire-5-a514-56p-35x7-nx.khrsv.001-gray-cpu-i3-1315u-ram-8gb-ssd-512gb-vga-uhd-graphics-14-inch-wuxga-win-11.html">
+                                <Link
+to={"/detail"}
+                                >
                                     Laptop Acer Aspire 5 A514-56P-35X7 (NX.KHRSV.001) Gray (Cpu
                                     i3-1315U, Ram 8GB, SSD 512GB, Vga UHD Graphics, 14 inch WUXGA,
                                     Win 11)
-                                </a>
+                                </Link>
                             </h3>
                             <span className="p-price">11.950.000đ</span>&nbsp;
                             <span className="p-old-price"/>
@@ -127,8 +130,7 @@ export function Product() {
                 <div className="owl-item" style={{width: "20%"}}>
                     <div className="p-item">
                         <div className="p-container">
-                            <a
-                                href="/laptop-acer-nitro-17-phoenix-an17-51-50b9-nh.qk5sv.001-den-cpu-i5-13500h-ram-8gb-ssd-512gb-vga-rtx-4050-6gb-17.3-inch-fhd-win-11.html"
+                            <Link to={"/detail"}
                                 className="p-img"
                             >
                                 <span className="icon-offer"/>
@@ -136,7 +138,7 @@ export function Product() {
                                     src="https://mega.com.vn/media/product/250_24291_nitro4_01.png"
                                     alt="Laptop Acer Nitro 17 Phoenix AN17-51-50B9 (NH.QK5SV.001) Đen (Cpu i5-13500H, Ram 8GB, SSD 512GB, Vga RTX 4050 6GB, 17.3 inch FHD, Win 11)"
                                 />
-                            </a>
+                            </Link>
                             <div className="p-brand-img">
                                 <img
                                     className="p-brand-img"
@@ -145,18 +147,19 @@ export function Product() {
                                 />
                             </div>
                             <h3 className="p-name">
-                                <a href="/laptop-acer-nitro-17-phoenix-an17-51-50b9-nh.qk5sv.001-den-cpu-i5-13500h-ram-8gb-ssd-512gb-vga-rtx-4050-6gb-17.3-inch-fhd-win-11.html">
+                                <Link
+to={"/detail"}
+                                >
                                     Laptop Acer Nitro 17 Phoenix AN17-51-50B9 (NH.QK5SV.001) Đen
                                     (Cpu i5-13500H, Ram 8GB, SSD 512GB, Vga RTX 4050 6GB, 17.3 inch
                                     FHD, Win 11)
-                                </a>
+                                </Link>
                             </h3>
                             <span className="p-price">32.990.000đ</span>&nbsp;
                             <span className="p-old-price"/>
                             <div className="p-bottom">
               <span
                   className="p-buy icons"
-
               />
                             </div>
                         </div>
@@ -165,8 +168,7 @@ export function Product() {
                 <div className="owl-item" style={{width: "20%"}}>
                     <div className="p-item">
                         <div className="p-container">
-                            <a
-                                href="/laptop-acer-swift-5-sf514-55t-51nz-nx.hx9sv.002-vang-core-i5-1135g7-ram-8gb-ssd-512gb-14-inch-fhd-win-10.html"
+                            <Link to={"/detail"}
                                 className="p-img"
                             >
                                 <span className="icon-offer"/>
@@ -174,7 +176,7 @@ export function Product() {
                                     src="https://mega.com.vn/media/product/250_17766_5_01.png"
                                     alt="Laptop Acer SWIFT 5 SF514-55T-51NZ (NX.HX9SV.002) Vàng (Core i5-1135G7, Ram 8GB, SSd 512gb, 14 inch, FHD, Win 10, Touch)"
                                 />
-                            </a>
+                            </Link>
                             <div className="p-brand-img">
                                 <img
                                     className="p-brand-img"
@@ -183,10 +185,10 @@ export function Product() {
                                 />
                             </div>
                             <h3 className="p-name">
-                                <a href="/laptop-acer-swift-5-sf514-55t-51nz-nx.hx9sv.002-vang-core-i5-1135g7-ram-8gb-ssd-512gb-14-inch-fhd-win-10.html">
+                                <Link to={"/detail"}>
                                     Laptop Acer SWIFT 5 SF514-55T-51NZ (NX.HX9SV.002) Vàng (Core
                                     i5-1135G7, Ram 8GB, SSd 512gb, 14 inch, FHD, Win 10, Touch)
-                                </a>
+                                </Link>
                             </h3>
                             <span className="p-price">21.190.000đ</span>&nbsp;
                             <span className="p-old-price">22.790.000đ</span>
@@ -224,11 +226,11 @@ export function Product() {
                                 />
                             </div>
                             <h3 className="p-name">
-                                <a href="/laptop-dell-vostro-3405-v4r53500u001w-black-cpu-r5-3500u-2.1-ghz-4mb-up-to-3.7ghz-ram-4gb-2400-ssd-256gb-m2-pcie-win-10-14-inch.html">
+                                <Link to={"/detail"} >
                                     Laptop Dell Vostro 3405 V4R53500U001W-Black (Cpu R5-3500U( 2.1
                                     Ghz, 4Mb up to 3.7Ghz), Ram 4gb 2400, Ssd 256gb M2 PCIe, Win 10,
                                     14 inch)
-                                </a>
+                                </Link>
                             </h3>
                             <span className="p-price">11.900.000đ</span>&nbsp;
                             <span className="p-old-price">12.950.000đ</span>

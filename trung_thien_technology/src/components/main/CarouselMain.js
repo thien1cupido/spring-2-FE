@@ -4,30 +4,42 @@ import {Carousel} from "react-bootstrap";
 export function CarouselMain() {
     return (
         <>
-            <Carousel interval={2000} >
+            <Carousel data-bs-theme="dark">
                 <Carousel.Item>
                     <img
-                        className="slider"
-                        src="https://cdn.nguyenkimmall.com/images/companies/_1/Content/tin-tuc/gia-dung/9-loai-quat-thong-dung-dung-trong-gia-dinh-tren-thi-truong-viet-nam-h5.jpg"
+                        style={{with: "960px"}}
+                        src="https://mega.com.vn/media/banner/02_Aug1a2bb0c78a39829e7c773625174604c6.png"
                         alt="First slide"
-                        style={{width: "80%"}}
                     />
+                    <Carousel.Caption>
+                        <h5>First slide label</h5>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="slider-item fade-box slick-slide"
-                        src="https://yoobao.com.vn/wp-content/uploads/2020/01/quat-dien-mini-Yoobao-F04-6400mAh-726304.jpg"
+                        style={{with: "960px"}}
+                        src="https://mega.com.vn/media/banner/02_Augb42fff87381d92e0de514596d3e8c685.png
+"
                         alt="Second slide"
-                        style={{width: "80%"}}
                     />
+                    <Carousel.Caption>
+                        <h5>Second slide label</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="slider-item fade-box slick-slide "
-                        src="https://quatdasinchatluong.com/wp-content/uploads/2022/04/quat-tich-dien-dan-dung.jpg"
+                        style={{with: "960px"}}
+                        src="https://mega.com.vn/media/banner/02_Augb42fff87381d92e0de514596d3e8c685.png"
                         alt="Third slide"
-                        style={{width: "80%"}}
                     />
+                    <Carousel.Caption>
+                        <h5>Third slide label</h5>
+                        <p>
+                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                        </p>
+                    </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
         </>

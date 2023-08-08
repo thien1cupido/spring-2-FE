@@ -15,6 +15,8 @@ export function ShoppingCart() {
                                     <span itemProp="name">Trang chủ</span>
                                 </a> <i className="fa fa-angle-right"/>
                             </li>
+                            <li>
+                                <ion-icon name="chevron-forward-outline"/></li>
                             <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
                                 <a href="" itemProp="item" className="current">
                                     <span itemProp="name"><h1>Giỏ hàng</h1></span>
@@ -27,11 +29,11 @@ export function ShoppingCart() {
                         <table id="tbl-cart-item" className="table-mega">
                             <thead>
                             <tr>
-                                <td width="500" style={{paddingLeft:"7px"}}>Sản phẩm</td>
-                                <td style={{paddingLeft:"7px"}}>Đơn giá</td>
-                                <td style={{paddingLeft:"7px"}}>Số lượng</td>
-                                <td style={{paddingLeft:"7px"}}>Thành tiền</td>
-                                <td style={{paddingLeft:"7px"}}>Xóa</td>
+                                <td width="500" style={{paddingLeft: "7px"}}>Sản phẩm</td>
+                                <td style={{paddingLeft: "7px"}}>Đơn giá</td>
+                                <td style={{paddingLeft: "7px"}}>Số lượng</td>
+                                <td style={{paddingLeft: "7px"}}>Thành tiền</td>
+                                <td style={{paddingLeft: "7px"}}>Xóa</td>
                             </tr>
                             </thead>
                             <tbody>
@@ -58,34 +60,36 @@ export function ShoppingCart() {
                                     <span className="js-show-buy-price">26.900.000 đ</span>
                                 </td>
                                 <td>
-                                    <input value="1" style={{textAlign:"center"}} className="buy-quantity quantity-change text-center" size="5"/>
+                                    <input value="1" style={{textAlign: "center"}}
+                                           className="buy-quantity quantity-change text-center" size="5"/>
                                 </td>
                                 <td><b className="price">
                                     <span className="total-item-price">26.900.000</span> đ
                                 </b></td>
                                 <td>
-                                {/*    <a className="delete-from-cart"><i className="fa fa-trash-o"*/}
-                                {/*                                       aria-hidden="true"/>*/}
-                                {/*</a>*/}
+                                    {/*    <a className="delete-from-cart"><i className="fa fa-trash-o"*/}
+                                    {/*                                       aria-hidden="true"/>*/}
+                                    {/*</a>*/}
                                     <button
-                                    style={{
-                                        background: "#e00",
-                                        display: "inline-flex",
-                                        flexWrap: "wrap",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        lineHeight: "normal",
-                                        fontSize: "1rem",
-                                        padding:" 0.5rem",
-                                        borderColor:"#fefefe",
-                                        color: "#fff",
-                                        fontWeight: "500",
-                                        textTransform: "uppercase",
-                                        borderRadius: "0.25rem",
-                                        boxShadow: "none",
-                                        whiteSpace:" nowrap"
-                                    }}
-                                    >Xóa</button>
+                                        style={{
+                                            background: "#e00",
+                                            display: "inline-flex",
+                                            flexWrap: "wrap",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            lineHeight: "normal",
+                                            fontSize: "1rem",
+                                            padding: " 0.5rem",
+                                            borderColor: "#fefefe",
+                                            color: "#fff",
+                                            fontWeight: "500",
+                                            textTransform: "uppercase",
+                                            borderRadius: "0.25rem",
+                                            boxShadow: "none",
+                                            whiteSpace: " nowrap"
+                                        }}
+                                    >Xóa
+                                    </button>
                                 </td>
                             </tr>
                             <tr className="item js-item-row" data-variant_id="0" data-item_id="24387"
@@ -110,14 +114,15 @@ export function ShoppingCart() {
                                     <span className="js-show-buy-price">8.140.000 đ</span>
                                 </td>
                                 <td>
-                                    <input value="1" style={{textAlign:"center"}} className="buy-quantity quantity-change text-center" size="5"/>
+                                    <input value="1" style={{textAlign: "center"}}
+                                           className="buy-quantity quantity-change text-center" size="5"/>
                                 </td>
                                 <td><b className="price">
                                     <span className="total-item-price">8.140.000</span> đ
                                 </b></td>
                                 <td>
-                                {/*    <a className="delete-from-cart"><i className="fa fa-trash-o"/>*/}
-                                {/*</a>*/}
+                                    {/*    <a className="delete-from-cart"><i className="fa fa-trash-o"/>*/}
+                                    {/*</a>*/}
                                     <button
                                         style={{
                                             background: "#e00",
@@ -127,24 +132,25 @@ export function ShoppingCart() {
                                             justifyContent: "center",
                                             lineHeight: "normal",
                                             fontSize: "1rem",
-                                            padding:" 0.5rem",
-                                            borderColor:"#fefefe",
+                                            padding: " 0.5rem",
+                                            borderColor: "#fefefe",
                                             color: "#fff",
                                             fontWeight: "500",
                                             textTransform: "uppercase",
                                             borderRadius: "0.25rem",
                                             boxShadow: "none",
-                                            whiteSpace:" nowrap"
+                                            whiteSpace: " nowrap"
                                         }}
-                                    >Xóa</button>
+                                    >Xóa
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
                             <tfoot className="tfoot-mega">
-                            <tr >
-                                <td >
-                                    <b style={{marginLeft:"5px"}}>Tổng tiền:</b>
-                                    <b className="total-cart-price text-18" style={{marginLeft:"5px"}}>35.040.000 đ</b>
+                            <tr>
+                                <td>
+                                    <b style={{marginLeft: "5px"}}>Tổng tiền:</b>
+                                    <b className="total-cart-price text-18" style={{marginLeft: "5px"}}>35.040.000 đ</b>
                                 </td>
                             </tr>
                             </tfoot>
@@ -158,35 +164,37 @@ export function ShoppingCart() {
                                     <p className="text-12">Để tiếp tục đặt hàng, quý khách xin vui lòng nhập thông tin
                                         bên
                                         dưới</p>
-                                    <div className="form-group row" style={{justifyContent:"space-between"}}>
-                                        <label className="col-md-3 col-12">Họ tên*</label>
+                                    <div className="form-group row" style={{justifyContent: "start"}}>
+                                        <label className="col-md-3 col-12" style={{marginLeft:"1px"}}>Họ tên*</label>
                                         <div className="col-md-9 col-12"><input type="text" name="customerName"
                                                                                 id="buyer_name" value=""
                                                                                 className="form-control"/></div>
                                     </div>
-                                    <div className="form-group row" style={{justifyContent:"space-between"}}>
+                                    <div className="form-group row" style={{justifyContent: "start"}}>
                                         <label className="col-md-3 col-12">SĐT*</label>
-                                        <div className="col-md-9 col-12"><input type="text" name="phoneNumber"
-                                                                                id="buyer_tel" value=""
-                                                                                className="form-control"/></div>
+                                        <div style={{marginLeft:"13px"}} className="col-md-9 col-12">
+                                            <input type="text" name="phoneNumber"
+                                                   id="buyer_tel" value=""
+                                                   className="form-control"/></div>
                                     </div>
-                                    <div className="form-group row" style={{justifyContent:"space-between"}}>
+                                    <div className="form-group row" style={{justifyContent: "start"}}>
                                         <label className="col-md-3 col-12">Email*</label>
-                                        <div className="col-md-9 col-12"><input type="text" name="email"
-                                                                                id="buyer_email"
+                                        <div className="col-md-9 col-12" style={{marginLeft:"7px"}}><input type="text" name="email"
                                                                                 value="" className="form-control"/>
                                         </div>
                                     </div>
-                                    <div className="form-group row" style={{justifyContent:"space-between"}}>
+                                    <div className="form-group row" style={{justifyContent: "start"}}>
                                         <label className="col-md-3 col-12">Địa chỉ*</label>
                                         <div className="col-md-9 col-12"><textarea name="address"
                                                                                    id="buyer_address"
                                                                                    className="form-control"
+                                                                                   cols={23}
                                                                                    rows="3"/></div>
                                     </div>
-                                    <div className="form-group row" style={{justifyContent:"space-between"}}>
+                                    <div className="form-group row" style={{justifyContent: "start"}}>
                                         <label className="col-md-3 col-12">Ghi chú</label>
                                         <div className="col-md-9 col-12"><textarea name="notes"
+                                                                                   cols={23}
                                                                                    className="form-control"
                                                                                    rows="3"/></div>
                                     </div>
@@ -228,20 +236,20 @@ export function ShoppingCart() {
                                     </table>
 
                                 </div>
-                                <div className="col-12">
+                                <div >
                                     <h3>Tổng tiền</h3>
                                     <table width="100%" cellPadding="5">
                                         <tbody>
                                         <tr>
                                             <td>Tổng cộng</td>
-                                            <td align="right"><span className="total-cart-price">49.030.000</span> đ
+                                            <td align="right"><span className="total-cart-price">26.900.000</span> đ
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><b>Thành tiền</b></td>
                                             <td align="right">
                                                 <div className="red"><b
-                                                    className="total-cart-payment text-18">49.030.000</b> đ
+                                                    className="total-cart-payment text-18">26.900.000</b> đ
                                                 </div>
                                             </td>
                                         </tr>
