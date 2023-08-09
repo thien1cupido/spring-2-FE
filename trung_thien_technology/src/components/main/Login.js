@@ -1,7 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import * as Yup from "yup";
-import  axios from "axios";
+import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 export function Login() {
     const navigate = useNavigate();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
     return (
         <>
             <div className="container" style={{marginBottom: "50px", marginTop: "50px"}}>

@@ -3604,15 +3604,15 @@ svg.icon {
     width: 100%;
 }
 
-.main-header--account .account-dropdown .greeting .actions button:first-child {
-    color: #FFF;
-    background-color: #111111;
-    border-color: #111111;
-    transition: background-color 0.2s ease 0s;
-    margin-right: 5px;
-}
+/*.main-header--account .account-dropdown .greeting .actions .js-account {*/
+/*    color: #FFF;*/
+/*    background-color: #111111;*/
+/*    border-color: #111111;*/
+/*    transition: background-color 0.2s ease 0s;*/
+/*    margin-right: 5px;*/
+/*}*/
 
-.main-header--account .account-dropdown .greeting .actions button:last-child {
+.main-header--account .account-dropdown .greeting .actions .js-account {
     background-color: transparent;
     color: #111111;
     border-color: #111111;

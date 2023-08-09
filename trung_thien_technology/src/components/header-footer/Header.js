@@ -1,8 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
+import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 
 export function Header() {
+    const navigate = useNavigate();
+    const [isLogin, setIsLogin] = useState();
+    const token = localStorage.getItem('token');
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        const getToken=async ()=>{
+            setUsername(localStorage.getItem('username'));
+        }
+        getToken();
+        if (token) {
+            setIsLogin(true);
+        } else {
+        }
+    }, [token]);
+    const handlerLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        localStorage.removeItem("role");
+        setIsLogin(false);
+        toast.success("Đăng xuất thành công !!");
+        navigate("/")
+    };
     return (
         <>
             <header className="main-header">
@@ -199,7 +224,8 @@ export function Header() {
 			</span>
 		</span>
                                             <span className="box-text">
-			<span className="txtnw">Đăng nhập</span>
+			<span className="txtnw">{username === "" || username === null ? "Đăng nhập" : username
+            }</span>
 		</span>
                                         </a>
 
@@ -243,14 +269,14 @@ export function Header() {
                                                     </div>
                                                 </div>
                                                 <div className="actions">
-
-                                                    <NavLink to={"/login"}>
-                                                        <button className="js-account" data-box="acc-login-box">ĐĂNG
-                                                            NHẬP
-                                                        </button>
-                                                    </NavLink>
-                                                    <button className="js-account" data-box="acc-register-box">ĐĂNG KÝ
-                                                    </button>
+                                                    {isLogin ?
+                                                        <button className="js-account" onClick={() => handlerLogout()
+                                                        } data-box="acc-register-box">ĐĂNG XUẤT
+                                                        </button> : <NavLink to={"/login"} style={{width:"100%",textDecoration:"none"}}>
+                                                            <button className="js-account" data-box="acc-login-box" >ĐĂNG
+                                                                NHẬP
+                                                            </button>
+                                                        </NavLink>}
                                                 </div>
                                             </div>
                                             <div className="block block--3">
