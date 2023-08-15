@@ -76,7 +76,7 @@ export function Footer() {
                                             <p><span>Gọi mua: </span> <a href="tel:18006975">1800.6975 <span> (8:00 - 21:00) </span>
                                             </a></p><p><span>CSKH: </span> <a href="tel:18006173">1800.6173<span> (8:00 - 21:00) </span>
                                         </a></p><p><span>Email: </span> <a
-                                            href="mailto:cskh@gearvn.com">cskh@trungthien.com</a></p></div>
+                                            href="mailto:cskh@gearvn.com">cskh@trungthientechnology.com</a></p></div>
                                     </div>
                                 </div>
                             </div>
@@ -93,10 +93,6 @@ export function Footer() {
                                                      src="//theme.hstatic.net/200000722513/1001090675/14/ship_2.png?v=247"
                                                      data-src="//theme.hstatic.net/200000722513/1001090675/14/ship_2.png?v=247"
                                                      alt="Hình thức vận chuyển 2" sizes="73px"/></li>
-                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
-                                                     src="//theme.hstatic.net/200000722513/1001090675/14/ship_4.png?v=247"
-                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/ship_4.png?v=247"
-                                                     alt="Hình thức vận chuyển 4" sizes="73px"/></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -120,10 +116,6 @@ export function Footer() {
                                                      src="//theme.hstatic.net/200000722513/1001090675/14/pay_6.png?v=247"
                                                      data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_6.png?v=247"
                                                      alt="Phương thức thanh toán 6" sizes="73px"/></li>
-                                            <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
-                                                     src="//theme.hstatic.net/200000722513/1001090675/14/pay_7.png?v=247"
-                                                     data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_7.png?v=247"
-                                                     alt="Phương thức thanh toán 7" sizes="73px"/></li>
                                             <li><img data-sizes="auto" className="lazyautosizes lazyloaded"
                                                      src="//theme.hstatic.net/200000722513/1001090675/14/pay_8.png?v=247"
                                                      data-src="//theme.hstatic.net/200000722513/1001090675/14/pay_8.png?v=247"

@@ -4,6 +4,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as Yup from "yup";
 
 
 export function Login() {
@@ -23,11 +24,13 @@ export function Login() {
                         >
                             <a href="/" itemProp="item">
                                 <span itemProp="name">Trang chủ</span>
+
                             </a>
+
                             <meta itemProp="position" content={1}/>
                         </li>
                         <li>
-                            <ion-icon name="chevron-forward-outline"/>
+                            <i className="fa fa-angle-right"></i>
                         </li>
                         <li
                             itemProp="itemListElement"
@@ -47,10 +50,10 @@ export function Login() {
                         username: "",
                         password: ""
                     }}
-                    // validationSchema={Yup.object({
-                    //     username: Yup.string().required("Vui lòng nhập tài khoản"),
-                    //     password: Yup.string().required("Vui lòng nhập mật khẩu"),
-                    // })}
+                    validationSchema={Yup.object({
+                        username: Yup.string().required("Vui lòng nhập tài khoản"),
+                        password: Yup.string().required("Vui lòng nhập mật khẩu"),
+                    })}
                     onSubmit={(values, {setSubmitting}) => {
                         const login = async () => {
                             try {

@@ -1288,7 +1288,7 @@ svg.icon {
     }
 }
 
-/* . - Product loop */
+/* . - PC loop */
 .sticker_right {
     position: absolute;
     top: 0px;
@@ -4672,6 +4672,9 @@ svg.icon {
     right: 0;
     left: auto;
 }
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
 
 .sidebar-menu .megamenu-item .sub-megamenu-item:not(.pull-right) {
     padding: 5px 5px 16px;
@@ -4680,20 +4683,6 @@ svg.icon {
 .sidebar-menu .megamenu-item .sub-megamenu-item.pull-right {
     width: 17%;
 }
-
-.sidebar-menu .megamenu-item .sub-megamenu-item .sub-megamenu-item-name {
-    color: #E30019;
-    font-weight: 600;
-    margin-bottom: 8px;
-    display: block;
-    font-size: 15px;
-}
-
-.sidebar-menu .megamenu-item .sub-megamenu-item .sub-megamenu-item-name:focus, .sidebar-menu .megamenu-item .sub-megamenu-item .sub-megamenu-item-name:hover {
-    color: #E30019;
-    text-decoration: none;
-}
-
 .sidebar-menu .megamenu-item .sub-megamenu-item .sub-megamenu-item-filter {
     display: block;
     font-size: 13px;

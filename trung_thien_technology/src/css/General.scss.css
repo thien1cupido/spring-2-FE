@@ -1288,7 +1288,7 @@ svg.icon {
     }
 }
 
-/* . - Product loop */
+/* . - PC loop */
 .sticker_right {
     position: absolute;
     top: 0px;
@@ -2750,7 +2750,9 @@ svg.icon {
     width: 18px;
     height: 36px;
 }
-
+.main-header .main-header--top .header-action-item .header-action_text .header-action__link .box-icons svg {
+   display: none;
+}
 .main-header .main-header--top .header-action-item .header-action_text .header-action__link .box-icon svg.svg-ico-account {
     width: 22px;
 }
@@ -3604,13 +3606,7 @@ svg.icon {
     width: 100%;
 }
 
-/*.main-header--account .account-dropdown .greeting .actions .js-account {*/
-/*    color: #FFF;*/
-/*    background-color: #111111;*/
-/*    border-color: #111111;*/
-/*    transition: background-color 0.2s ease 0s;*/
-/*    margin-right: 5px;*/
-/*}*/
+
 
 .main-header--account .account-dropdown .greeting .actions .js-account {
     background-color: transparent;
@@ -7470,29 +7466,7 @@ svg.icon {
     }
 }
 
-.container-mega {
-    width: 1200px;
-    max-width: 100%;
-    padding: 0;
-}
 
-@media (min-width: 1200px) {
-    .container-mega {
-        max-width: 1140px;
-    }
-}
-
-@media (min-width: 768px) {
-    .container-mega {
-        max-width: 720px;
-    }
-}
-
-@media (min-width: 576px) {
-    .container-mega {
-        max-width: 540px;
-    }
-}
 
 #home-contact {
     height: 40px;
@@ -7523,12 +7497,16 @@ svg.icon {
     right: -39.7px;
     top: 0;
 }
-
-#home-contact .marquee {
-    margin-left: 250px;
-    height: 40px;
-
+.carousel .slide img {
+    max-width: 100%;
+    vertical-align: top;
+    height: 445px;
+    background-size: cover;
+    border: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
+
 .clearfix::after {
     display: block;
     clear: both;
