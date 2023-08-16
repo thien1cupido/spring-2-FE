@@ -2,11 +2,18 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {CurrencyFormatter} from "../../util/ConverUnit";
+import {decrement, increment, removeItem} from "../../redux/ShoppingCartReducer";
+import * as alert from "../../util/Alert";
+import Swal from "sweetalert2";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 export const ShoppingCart = () => {
-
     const products = useSelector((state) => state.cart.products);
     const dispatch = useDispatch();
+    const [isLogin, setIsLogin] = useState(false);
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate()
 
 
     const totalPrice = () => {
@@ -16,7 +23,13 @@ export const ShoppingCart = () => {
         });
         return total;
     };
-
+    useEffect(() => {
+        if (token) {
+            setIsLogin(true);
+        } else {
+            setIsLogin(false);
+        }
+    }, [token]);
 
     useEffect(() => {
         document.title = "Giỏ hàng";
@@ -25,49 +38,60 @@ export const ShoppingCart = () => {
 
     return (
         <>
-            <div style={{display: "flex", justifyContent: 'center'}}>
-                <div className="container">
-                    <div id="breadcrumb">
-                        <ol>
-                            <li>
-                                <a href="/" itemProp="item">
-                                    <span itemProp="name">Trang chủ</span>
-                                </a> <i className="fa fa-angle-right"/>
-                            </li>
-                            <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
-                                <a href="" itemProp="item" className="current">
-                                    <span itemProp="name"><h1>Giỏ hàng</h1></span>
-                                </a>
-                            </li>
-                        </ol>
-                    </div>
-                    <div className="clearfix"></div>
-                    <div className="bg-white overflow-hidden">
-                        <table id="tbl-cart-item" className="table-mega">
-                            <thead>
-                            <tr>
-                                <td width="500" style={{paddingLeft: "7px"}}>Sản phẩm</td>
-                                <td style={{paddingLeft: "7px"}}>Đơn giá</td>
-                                <td style={{paddingLeft: "7px"}}>Số lượng</td>
-                                <td style={{paddingLeft: "7px"}}>Thành tiền</td>
-                                <td style={{paddingLeft: "7px"}}>Xóa</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                products?.map((items, index) => (
-                                    <tr className="item js-item-row" data-variant_id="0" data-item_id="22669"
-                                        data-item_type="product" key={index}>
-                                        <td>
-                                            <img src={items.img}
-                                                 style={{
-                                                     verticalAlign: "middle",
-                                                     marginRight: "10px",
-                                                     margin: "10px",
-                                                     float: "left",
-                                                     width: "100px"
-                                                 }}/>
-                                            <div style={{marginLeft: "120px", paddingRight: "20px"}}>
+            <div style={{
+                width:"1330px",
+                marginRight: "auto",
+                marginLeft: "auto",
+                maxWidth: "100%",
+                padding: "0"
+            }}>
+                <div id="breadcrumb">
+                    <ol>
+                        <li>
+                            <Link to="/" itemProp="item">
+                                <span itemProp="name">Trang chủ</span>
+                            </Link> <i className="fa fa-angle-right"/>
+                        </li>
+                        <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
+                            <Link to="/shopping-cart" itemProp="item" className="current">
+                                <span itemProp="name"><h1>Giỏ hàng</h1></span>
+                            </Link>
+                        </li>
+                    </ol>
+                </div>
+                <div className="clearfix"></div>
+                <div className=" bg-white overflow-hidden d-flex">
+                    {
+                        products.length === 0 ?
+                            <h3 style={{color: "red", textAlign: "center",width:"75%"}}>Không có sản phẩm
+                                trong giỏ hàng</h3> :
+
+                            <table id="tbl-cart-item" className="table-mega" style={{width:"75%"}}>
+                                <thead>
+                                <tr>
+                                    <td width="12%" style={{paddingLeft: "7px"}}>Sản phẩm</td>
+                                    <td width="30%"></td>
+                                    <td width="15%" style={{paddingLeft: "7px"}}>Đơn giá</td>
+                                    <td width="15%" style={{paddingLeft: "7px"}}>Số lượng</td>
+                                    <td width="18%" style={{paddingLeft: "7px"}}>Thành tiền</td>
+                                    <td width="10%" style={{paddingLeft: "7px"}}>Xóa</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    products?.map((items, index) => (
+                                        <tr className="item js-item-row" key={index}>
+                                            <td>
+                                                <img src={items.img}
+                                                     style={{
+                                                         verticalAlign: "middle",
+                                                         marginRight: "10px",
+                                                         margin: "10px",
+                                                         float: "left",
+                                                         width: "100px"
+                                                     }}/>
+                                            </td>
+                                            <td>
                                                 <Link to={`/product-detail/${items.id}`}
                                                       style={{
                                                           textDecoration: "none",
@@ -76,252 +100,179 @@ export const ShoppingCart = () => {
                                                       }}>
                                                     {items.name}
                                                 </Link>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <input type="hidden" className="buy-price"/>
-                                            <span className="js-show-buy-price"> <CurrencyFormatter
+                                            </td>
+                                            <td>
+                                            <span className="js-show-buy-price"
+                                                  style={{cursor: "default"}}> <CurrencyFormatter
                                                 amount={parseInt(items.price)}/> đ</span>
-                                        </td>
-                                        <td>
-                                            <input value={items.quantity} style={{textAlign: "center"}}
-                                                   className="buy-quantity quantity-change text-center" size="5"/>
-                                        </td>
-                                        <td><b className="price">
+                                            </td>
+                                            <td>
+                                                <div className="item-quan">
+                                                    <div className="container-quantity_cart">
+                                                        <button type="button" className="btn-left"
+                                                                onClick={() => dispatch(decrement(items))}>
+                                                            <svg
+                                                                width={16}
+                                                                height={16}
+                                                                viewBox="0 0 16 16"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                            >{
+                                                                items.quantity > 1 ?
+                                                                    <path d="M13.3332 8H7.99984H2.6665"
+                                                                          stroke={"#111111"} strokeWidth="2"
+                                                                          strokeLinecap="round"/> :
+                                                                    <path
+                                                                        d="M13.3332 8H7.99984H2.6665"
+                                                                        stroke="#cfcfcf"
+                                                                        strokeWidth={2}
+                                                                        strokeLinecap="round"
+                                                                    />
+                                                            }
+                                                            </svg>
+                                                        </button>
+                                                        <input
+                                                            readOnly={true}
+                                                            value={items.quantity}
+                                                            type="text"
+                                                            size={4}
+                                                            min={1}
+                                                            className="input-quantity_cart"
+                                                        />
+                                                        <button type="button" className="btn-right"
+                                                                onClick={() => dispatch(increment(items))}>
+                                                            <svg
+                                                                width={16}
+                                                                height={16}
+                                                                viewBox="0 0 16 16"
+                                                                fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                            >
+                                                                <path
+                                                                    d="M8.00033 13.3334V8.00008M8.00033 8.00008V2.66675M8.00033 8.00008H13.3337M8.00033 8.00008H2.66699"
+                                                                    stroke="#111111"
+                                                                    strokeWidth={2}
+                                                                    strokeLinecap="round"
+                                                                />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><b className="price" style={{cursor: "default"}}>
                                             <span className="total-item-price"><CurrencyFormatter
                                                 amount={parseInt(items.price) * parseInt(items.quantity)}/></span> đ
-                                        </b></td>
-                                        <td>
-                                            < a style={{
-                                                cursor: "pointer",
-                                                fontSize: "25px",
-                                                color: "red"
-                                            }}
-                                            >
-                                                <ion-icon name="trash-outline"></ion-icon>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                            <tfoot>
+                                            </b></td>
+                                            <td>
+                                                < a type="button" style={{
+                                                    cursor: "pointer",
+                                                    fontSize: "25px",
+                                                    color: "red"
+                                                }}
+                                                    onClick={
+                                                        () => alert.swalWithBootstrapButtons.fire({
+                                                            icon: "warning",
+                                                            title: "Xác nhận xóa",
+                                                            html: `Bạn có muốn xoá sản phẩm <span style="color: red">${items.name}</span> khỏi giỏ hàng không?`,
+                                                            showCancelButton: true,
+                                                            cancelButtonText: 'Không',
+                                                            confirmButtonText: 'Có',
+                                                            reverseButtons: true
+                                                        }).then((res) => {
+                                                            if (res.isConfirmed) {
+                                                                dispatch(removeItem(items.id))
+                                                                Swal.fire({
+                                                                    icon: "success",
+                                                                    title: "Xóa thành công !",
+                                                                    timer: 2000
+                                                                })
+                                                            }
+                                                        })
+                                                    }
+                                                >
+                                                    <ion-icon name="trash-outline"></ion-icon>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colSpan="3">
+                                        <div className="cart-voucher">
+                                            <input id="js_voucher_input" className="form-control"
+                                                   placeholder="Mã voucher"
+                                                   size="20"/>
+                                            <button className="btn btn-secondary js-voucher-submit"
+                                                    style={{lineHeight: "26.4px"}}>Áp dụng
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td colSpan="3" align="right" className="pr-2">
+                                        <b className="total-cart-price text-18"
+                                           style={{color: "red", cursor: "default"}}>Tổng
+                                            tiền: </b>
+                                        <b className="total-cart-price text-18"
+                                           style={{color: "red", cursor: "default"}}><CurrencyFormatter
+                                            amount={totalPrice() + " đ"}/></b>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                    }
+                    <div className="col-3 p-2" style={{border:"solid 1px #eee"}}>
+                        <h3 style={{
+                            textTransform: "uppercase",
+                            fontSize: "16px",
+                            fontWeight:"700",
+                            background: "#eee",
+                            padding: "11px 10px"
+                        }}>Tổng tiền</h3>
+                        <table width="100%" cellPadding={5}>
+                            <tbody>
                             <tr>
-                                <td colSpan="2">
-                                    <div className="cart-voucher">
-                                        <input id="js_voucher_input" className="form-control" placeholder="Mã voucher"
-                                               size="20"/>
-                                        <button className="btn btn-secondary js-voucher-submit"
-                                                style={{lineHeight: "26.4px"}}>Áp dụng
-                                        </button>
-                                    </div>
-                                </td>
-                                <td colSpan="3" align="right" className="pr-2">
-                                    <b className="total-cart-price text-18" style={{color: "red"}}>Tổng tiền: </b>
-                                    <b className="total-cart-price text-18" style={{color: "red"}}><CurrencyFormatter
-                                        amount= {totalPrice()+" đ"}/></b>
+                                <td>Tổng cộng</td>
+                                <td align="right">
+                                                <span className="total-cart-price"><CurrencyFormatter
+                                                    amount={totalPrice() + " đ"}/></span>
                                 </td>
                             </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div className="bg-white overflow-hidden mt-3 p-3">
-                        <form
-                            method="post"
-                            encType="multipart/form-data"
-                            action="/send-cart"
-                            onSubmit="return check_field()"
-                        >
-                            <div className="row" id="cart-step2">
-                                <div className="col-4">
-                                    <h3>Thông tin người mua</h3>
-                                    <p className="text-12">
-                                        Để tiếp tục đặt hàng, quý khách xin vui lòng nhập thông tin bên dưới
-                                    </p>
-                                    <div className="form-group row">
-                                        <label className="col-md-3 col-12">Họ tên*</label>
-                                        <div className="col-md-9 col-12">
-                                            <input
-                                                type="text"
-                                                name="user_info[name]"
-                                                id="buyer_name"
-                                                defaultValue=""
-                                                className="form-control"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label className="col-md-3 col-12">SĐT*</label>
-                                        <div className="col-md-9 col-12">
-                                            <input
-                                                type="text"
-                                                name="user_info[tel]"
-                                                id="buyer_tel"
-                                                defaultValue=""
-                                                className="form-control"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label className="col-md-3 col-12">Email*</label>
-                                        <div className="col-md-9 col-12">
-                                            <input
-                                                type="text"
-                                                name="user_info[email]"
-                                                id="buyer_email"
-                                                defaultValue=""
-                                                className="form-control"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label className="col-md-3 col-12">Địa chỉ*</label>
-                                        <div className="col-md-9 col-12">
-            <textarea
-                name="user_info[address]"
-                id="buyer_address"
-                className="form-control"
-                row={3}
-                defaultValue={""}
-            />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label className="col-md-3 col-12">Ghi chú</label>
-                                        <div className="col-md-9 col-12">
-            <textarea
-                name="user_info[note]"
-                className="form-control"
-                row={3}
-                defaultValue={""}
-            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <h3>Phương thức thanh toán</h3>
-                                    <table>
-                                        <tbody>
-                                        <tr id="pay-1">
-                                            <td valign="top">
-                                                <input
-                                                    type="radio"
-                                                    id="pay_method1"
-                                                    name="pay_method"
-                                                    defaultValue={1}
-                                                    className="pay_option"
-                                                    defaultChecked=""
-                                                    style={{verticalAlign: "middle"}}
-                                                />
-                                            </td>
-                                            <td valign="top">
-                                                <label htmlFor="pay_method1">
-                                                    Thanh toán tiền mặt khi nhận hàng (tiền mặt / chuyển khoản)
-                                                </label>
-                                                <div className="pay_content" style={{display: "none"}}></div>
-                                            </td>
-                                        </tr>
-                                        <tr id="pay-2">
-                                            <td valign="top">
-                                                <input
-                                                    type="radio"
-                                                    id="pay_method2"
-                                                    name="pay_method"
-                                                    defaultValue={2}
-                                                    className="pay_option"
-                                                    style={{verticalAlign: "middle"}}
-                                                />
-                                            </td>
-                                            <td valign="top">
-                                                <label htmlFor="pay_method2">
-                                                    Thanh toán qua chuyển khoản qua tài khoản ngân hàng (khuyên
-                                                    dùng)
-                                                </label>
-                                                <div className="pay_content" style={{display: "none"}}></div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div className="box-popup-cart-pay">
-                                        <div className="box-popup-alepay hide">
-                                            <p>
-                                                Trước khi thực hiện đặt hàng và thanh toán online quý khách vui
-                                                lòng liên hệ nhân viên tư vấn để kiểm tra tình trạng còn hàng của
-                                                sản phẩm
-                                            </p>
-                                            <p>
-                                                (Before making an order and online payment, please contact a staff
-                                                to check the availability of the product)
-                                            </p>
-                                        </div>
-                                        <div className="bg-popup hide" onClick="close_popup()"/>
-                                    </div>
-                                </div>
-                                <div className="col-4">
-                                    <h3>Tổng tiền</h3>
-                                    <table width="100%" cellPadding={5}>
-                                        <tbody>
-                                        <tr>
-                                            <td>Tổng cộng</td>
-                                            <td align="right">
-                                                <span className="total-cart-price"><CurrencyFormatter
-                                                    amount= {totalPrice()+" đ"}/></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Khuyến mãi khi dùng Voucher</td>
-                                            <td align="right">
+                            <tr>
+                                <td>Khuyến mãi khi dùng Voucher</td>
+                                <td align="right">
                 <span data-discount={0} id="price-discount">
-                  00
-                </span>{" "}
+                </span>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <b>Thành tiền</b>
-                                            </td>
-                                            <td align="right">
-                                                <div className="red">
-                                                    <b className="total-cart-payment text-18"><CurrencyFormatter
-                                                        amount= {totalPrice()+" đ"}/></b>
-                                                </div>
-                                                <span className="text-12">(Giá đã bao gồm VAT)</span>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div className="cart-btn">
-                                        <a href="/cart?show=tragop&type=cart" className="btn btn-primary">
-                                            Mua trả góp
-                                        </a>
-                                        <button type="submit" className="btn btn-red">
-                                            <i className="fa fa-check"/> Đặt hàng
-                                        </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Thành tiền</b>
+                                </td>
+                                <td align="right">
+                                    <div className="red">
+                                        <b className="total-cart-payment text-18"><CurrencyFormatter
+                                            amount={totalPrice() + " đ"}/></b>
                                     </div>
-                                </div>
-                            </div>
-                            <input type="hidden" name="send_order" defaultValue="yes"/>
-                            <input
-                                type="hidden"
-                                id="js-total-before-fee-discount"
-                                defaultValue={49530000}
-                            />
-                            <input type="hidden" id="js-discount-voucher" defaultValue={0}/>
-                            <input
-                                type="hidden"
-                                name="coupon_code"
-                                defaultValue=""
-                                id="js_coupon_code"
-                            />
-                            <input type="hidden" id="js-discount-membership" defaultValue={0}/>
-                            <input
-                                type="hidden"
-                                name="shipping_fee"
-                                id="js-fee-shipping"
-                                defaultValue={0}
-                            />
-                            <input type="hidden" name="cod_fee" id="js-fee-cod" defaultValue={0}/>
-                        </form>
+                                    <span className="text-12">(Giá đã bao gồm VAT)</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div className="cart-btn">
+                            <a className="btn btn-primary">
+                                Mua trả góp
+                            </a>
+                            {
+                                isLogin === true ?
+                                    (<button type="submit" className="btn btn-red">
+                                        <i className="fa fa-check"/> Đặt hàng
+                                    </button>) : (<Link to="/login" type="button" className="btn btn-red"
+                                                        onClick={() => toast.warning("Vui lòng đăng nhập!!")}>
+                                        <i className="fa fa-check"/> Đặt hàng
+                                    </Link>)
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

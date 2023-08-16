@@ -22,9 +22,21 @@ export const cartSlice = createSlice({
         resetCart: (state) => {
             state.products = []
         },
+        increment: (state,action) => {
+            const item = state.products.find((item) => item.id === action.payload.id);
+            if (item) {
+                item.quantity += 1;
+            }
+        },
+        decrement: (state,action) => {
+            const item = state.products.find((item) => item.id === action.payload.id);
+            if (item &&item.quantity>1) {
+                item.quantity -= 1;
+            }
+        },
     },
 });
 
-export const { addToCart,removeItem,resetCart } = cartSlice.actions;
+export const { addToCart,removeItem,resetCart ,increment,decrement} = cartSlice.actions;
 
 export default cartSlice.reducer;

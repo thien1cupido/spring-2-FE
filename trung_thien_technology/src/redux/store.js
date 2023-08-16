@@ -9,6 +9,7 @@ const persistConfig = {
     storage,
 };
 
+
 const persistedReducer = persistReducer(persistConfig, cartReducer);
 
 export const store = configureStore({

@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
@@ -10,6 +10,7 @@ import * as Yup from "yup";
 export function Login() {
     const navigate = useNavigate();
     useEffect(() => {
+        document.title="Đăng nhập";
         window.scrollTo(0, 0);
     }, [])
     return (
@@ -22,10 +23,10 @@ export function Login() {
                             itemScope=""
                             itemType="http://schema.org/ListItem"
                         >
-                            <a href="/" itemProp="item">
+                            <Link to="/"  itemProp="item">
                                 <span itemProp="name">Trang chủ</span>
 
-                            </a>
+                            </Link>
 
                             <meta itemProp="position" content={1}/>
                         </li>
@@ -37,9 +38,9 @@ export function Login() {
                             itemScope=""
                             itemType="http://schema.org/ListItem"
                         >
-                            <a href="" itemProp="item" className="current">
+                            <Link  to="/login" itemProp="item" className="current">
                                 <span itemProp="name">Đăng nhập</span>
-                            </a>
+                            </Link>
                             <meta itemProp="position" content={2}/>
                         </li>
                     </ol>
@@ -58,7 +59,6 @@ export function Login() {
                         const login = async () => {
                             try {
                                 const response = await axios.post("http://localhost:8080/api/user/authenticate", values);
-                                console.log(values)
                                 if (response.data.token) {
                                     localStorage.setItem("token", response.data.token);
                                     localStorage.setItem("username", response.data.username);
@@ -66,8 +66,7 @@ export function Login() {
                                 }
                                 navigate("/");
                             } catch (e) {
-                                console.log(e)
-                                toast.error(e.data);
+                                toast.error(e.response.data)
                             } finally {
                                 setSubmitting(false);
                             }
@@ -93,12 +92,12 @@ export function Login() {
                                                 name="username"
                                                 className="form-control"
                                             />
-                                            <ErrorMessage
-                                                name="username"
-                                                component="span"
-                                                className="error-r mx-1"
-                                            />
                                         </td>
+                                        <td> <ErrorMessage
+                                            name="username"
+                                            component="span"
+                                            style={{color:"red"}}
+                                        /></td>
                                     </tr>
                                     <tr>
                                         <td>Mật khẩu</td>
@@ -108,12 +107,12 @@ export function Login() {
                                                 name="password"
                                                 className="form-control"
                                             />
-                                            <ErrorMessage
-                                                name="password"
-                                                component="span"
-                                                className="error-r mx-1"
-                                            />
                                         </td>
+                                        <td><ErrorMessage
+                                            name="password"
+                                            component="span"
+                                            style={{color:"red"}}
+                                        /></td>
                                     </tr>
                                     <tr>
                                         <td/>

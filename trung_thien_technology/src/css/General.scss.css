@@ -313,9 +313,6 @@ table {
     border-spacing: 0;
 }
 
-table tr td {
-    border-top: 1px solid #eee;
-}
 
 table tr td, table tr th {
     position: relative;
@@ -5237,7 +5234,7 @@ svg.icon {
 }
 
 .swal2-modal .swal2-actions {
-    flex-direction: row-reverse;
+    flex-direction: row;
     flex-wrap: nowrap;
     margin-top: 24px;
     width: 100%;
@@ -5264,6 +5261,7 @@ svg.icon {
 .swal2-modal .swal2-actions button.swal2-cancel {
     border: 1px solid #ececec;
     background-color: #ececec;
+    margin-right: 15px;
     color: #111111;
 }
 
@@ -7700,7 +7698,6 @@ a, a:hover {
     border-collapse: separate;
     box-sizing: border-box;
     text-indent: initial;
-    border-spacing: 2px;
     border-color: gray;
 }
 .tfoot-mega{
@@ -7837,4 +7834,49 @@ element.style {
     float: left;
     -webkit-backface-visibility: hidden;
     -webkit-touch-callout: none;
+}
+.container-quantity_cart{
+    display: flex;
+    align-items: center;
+}
+
+.input-quantity_cart{
+    background: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    height: 32px;
+    width: 50px;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #CFCFCF !important;
+    border-radius: 0;
+    -webkit-appearance: none;
+    overflow: visible;
+}
+
+.btn-left{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    height: 32px;
+    width: 32px;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #CFCFCF;
+    border-radius: 4px 0 0 4px;
+    -webkit-appearance: none;
+}
+.btn-right{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    height: 32px;
+    width: 32px;
+    border-radius: 0 4px 4px 0;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #CFCFCF;
+    -webkit-appearance: none;
 }

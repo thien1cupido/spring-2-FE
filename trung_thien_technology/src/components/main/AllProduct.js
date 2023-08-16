@@ -3,9 +3,13 @@ import {Marquee} from "./Marqee";
 import * as productService from '../../service/ProductService';
 import ReactPaginate from "react-paginate";
 import {CurrencyFormatter} from "../../util/ConverUnit";
-import {useSearchParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
+import {toast} from "react-toastify";
+import {addToCart} from "../../redux/ShoppingCartReducer";
+import {useDispatch} from "react-redux";
 
 export function AllProduct() {
+    const dispatch = useDispatch();
     const [searchParam, setSearchParam] = useSearchParams()
     const [nameSearch, setNameSearch] = useState("")
 
@@ -33,10 +37,10 @@ export function AllProduct() {
         getAllProductApi(searchParam.get('searchProduct'));
         document.title = "Tất cả sản phẩm";
         window.scrollTo(0, 0);
-    }, [currentPage, searchParam,nameSearch])
+    }, [currentPage, searchParam, nameSearch])
     return (
         <>
-            <div className="container">
+            <div className="container" style={{height: "120vh"}}>
                 <div id="breadcrumb" style={{marginTop: "15px"}}>
                     <ol itemScope="" itemType="http://schema.org/BreadcrumbList">
                         <li
@@ -44,9 +48,9 @@ export function AllProduct() {
                             itemScope=""
                             itemType="http://schema.org/ListItem"
                         >
-                            <a href="/" itemProp="item" className="nopad-l">
+                            <Link to={"/"} itemProp="item" className="nopad-l">
                                 <span itemProp="name">Trang chủ</span>
-                            </a>{" "}
+                            </Link>
                             <i className="fa fa-angle-right"/>
                             <meta itemProp="position" content={1}/>
                         </li>
@@ -58,7 +62,7 @@ export function AllProduct() {
                             <a href="/may-bo-mega.html" itemProp="item" className="nopad-l current">
         <span itemProp="name">
           <h1>Tất cả sản phẩm</h1>
-        </span>{" "}
+        </span>
                                 <span className="last-bre">
                                 <i className="fa fa-angle-right"/>{" "}
         </span>
@@ -88,36 +92,50 @@ export function AllProduct() {
                         <div className="clearfix"/>
                     </div>
                 </div>
-                <div className="product-list d-flex flex-wrap">
+                <div className="product-list d-flex flex-wrap justify-content-center">
                     {
-                        product.map((p, index) => (
-                            <div className="p-item" key={index}>
-                                <div className="p-container">
-                                    <a href="/pc-mega-songoku.html" className="p-img">
-                                        <span className="icon-offer"/>
-                                        <img
-                                            className="lazy loaded"
-                                            src={p.image}
-                                            data-src="/media/product/250_22239_son_goku_04.png"
-                                            alt="PC MEGA  SONGOKU"
-                                            data-was-processed="true"
-                                        />
-                                    </a>
-                                    <h3 className="p-name">
-                                        <a href="/pc-mega-songoku.html">{p.name}</a>
-                                    </h3>
-                                    <span className="p-price">
+                        product.length === 0 && nameSearch !== ""?
+                            <h3 style={{color: "red",marginTop:"150px"}}>Không tìm thấy kết quả</h3>:
+                            product.map((p, index) =>
+                                (
+                                    <div className="p-item" key={index}>
+                                        <div className="p-container">
+                                            <a href="/pc-mega-songoku.html" className="p-img">
+                                                <span className="icon-offer"/>
+                                                <img
+                                                    className="lazy loaded"
+                                                    src={p.image}
+                                                    data-src="/media/product/250_22239_son_goku_04.png"
+                                                    alt="PC MEGA  SONGOKU"
+                                                    data-was-processed="true"
+                                                />
+                                            </a>
+                                            <h3 className="p-name">
+                                                <a href="/pc-mega-songoku.html">{p.name}</a>
+                                            </h3>
+                                            <span className="p-price">
                                     <CurrencyFormatter amount={p.price}/> đ</span>
-                                    <span className="p-old-price"/>
-                                    <div className="p-bottom">
+                                            <span className="p-old-price"/>
+                                            <div className="p-bottom">
       <span className="stock instock">
         <i className="fa fa-check"/>
       </span>
-                                        <span className="p-buy icons" onClick="listenBuyProduct(22239,0,1)"/>
+                                                <span className="p-buy icons" onClick={() => (
+                                                    toast("Đã thêm vào giỏ hàng !"),
+                                                        dispatch(
+                                                            addToCart({
+                                                                id: p.id,
+                                                                name: p.name,
+                                                                price: p.price,
+                                                                img: p.image,
+                                                                quantity: 1
+                                                            })
+                                                        ))
+                                                }/>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        ))
+                                ))
                     }
                 </div>
                 {

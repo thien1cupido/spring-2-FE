@@ -4,11 +4,16 @@ import "react-multi-carousel/lib/styles.css";
 import * as productService from '../../service/ProductService';
 import {CurrencyFormatter} from "../../util/ConverUnit";
 import {Link} from "react-router-dom";
+import {addToCart} from "../../redux/ShoppingCartReducer";
+import {useDispatch} from "react-redux";
+import {toast} from "react-toastify";
+
 export function PC() {
     const [pc, setPC] = useState([]);
+    const dispatch = useDispatch();
+
     const getAllPCApi = async () => {
         const res = await productService.findAllProductByPC();
-        console.log(res)
         setPC(res?.data)
     }
     useEffect(() => {
@@ -32,6 +37,7 @@ export function PC() {
             slidesToSlide: 1 // optional, default to 1.
         }
     };
+
     return (
 
         <>
@@ -68,28 +74,39 @@ export function PC() {
                             customTransition="all 1s ease 0s"
                             removeArrowOnDeviceType={["tablet", "mobile"]}
                         >{
-                            pc?.map((pc,index)=>(
-                            <div className="owl-item" style={{width: 240}} key={index}>
-                                <div className="p-item">
-                                    <div className="p-container">
-                                        <Link to={`/product-detail/${pc.id}`} className="p-img">
-                                            <img
-                                                src={pc.image}
-                                                alt="ttt"
-                                            />
-                                        </Link>
-                                        <h3 className="p-name" style={{fontSize:"15px"}}>
-                                            <Link to={`/product-detail/${pc.id}`} >{pc.name}</Link>
-                                        </h3>
-                                        <span className="p-price">
+                            pc?.map((pc, index) => (
+                                <div className="owl-item" style={{width: 240}} key={index}>
+                                    <div className="p-item">
+                                        <div className="p-container">
+                                            <Link to={`/product-detail/${pc.id}`} className="p-img">
+                                                <img
+                                                    src={pc.image}
+                                                    alt="ttt"
+                                                />
+                                            </Link>
+                                            <h3 className="p-name" style={{fontSize: "15px"}}>
+                                                <Link to={`/product-detail/${pc.id}`}>{pc.name}</Link>
+                                            </h3>
+                                            <span className="p-price">
                                             <CurrencyFormatter amount={pc.price}/> đ
                                         </span>
-                                        <span className="p-old-price"/>
-                                        <div className="p-bottom">
+                                            <span className="p-old-price"/>
+                                            <div className="p-bottom">
               <span className="stock instock">
-                <i className="fa fa-check"/>{" "}
+                <i className="fa fa-check"/>
               </span>
-                                            <span
+                                                <span onClick={() => (
+                                                    toast("Đã thêm vào giỏ hàng !"),
+                                                        dispatch(
+                                                            addToCart({
+                                                                id: pc.id,
+                                                                name: pc.name,
+                                                                price: pc.price,
+                                                                img: pc.image,
+                                                                quantity: 1
+                                                            })
+                                                        ))
+                                                }
                                                 className="p-buy icons"
                                             />
                                         </div>

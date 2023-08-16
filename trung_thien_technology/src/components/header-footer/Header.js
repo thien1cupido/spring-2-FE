@@ -21,7 +21,6 @@ export function Header() {
         getToken();
         if (token) {
             setIsLogin(true);
-        } else {
         }
     }, [token]);
 

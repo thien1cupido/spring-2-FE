@@ -312,9 +312,6 @@ table {
     border-spacing: 0;
 }
 
-table tr td {
-    border-top: 1px solid #eee;
-}
 
 table tr td, table tr th {
     position: relative;

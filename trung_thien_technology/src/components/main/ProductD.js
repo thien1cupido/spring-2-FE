@@ -3,20 +3,24 @@ import {useParams} from "react-router-dom";
 import * as productService from '../../service/ProductService';
 import {CurrencyFormatter} from "../../util/ConverUnit";
 import {useDispatch} from "react-redux";
-import {addToCart} from "../../redux/ShoppingCartReducer";
+import {addToCart,} from "../../redux/ShoppingCartReducer";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {Carousel} from "react-responsive-carousel";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export function ProductD() {
     const param = useParams();
-    const [image, setImage]=useState([])
+    const [image, setImage] = useState([])
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [title, setTitle] = useState("");
 
     const dispatch = useDispatch();
-
+    console.log(image)
     const getProductApi = async () => {
         const res = await productService.findProductById(param.id);
+        setTitle(res.data.name)
         setProduct(res.data);
     }
     const getImageApi = async () => {
@@ -30,11 +34,14 @@ export function ProductD() {
     }, [param.id]);
 
 
-    useEffect(()=>{
-        document.title=product?.name;
-        window.scrollTo(0,0);
-    },[])
+    useEffect(() => {
+        document.title = title;
+        window.scrollTo(0, 0);
+    }, [title])
     if (!product) {
+        return null;
+    }
+    if (!image) {
         return null;
     }
 
@@ -75,51 +82,28 @@ export function ProductD() {
                                 </div>
                                 <div className="clearfix"/>
                                 <div className="d-flex flex-wrap">
-                                    <div className="col-lg-4 col-md-12 col-12 product-gallery">
-                                        <div className="product-gallery--inner sticky-gallery">
-                                            <div
-                                                className="product-gallery--slide swiper  swiper-horizontal swiper-pointer-events swiper-backface-hidden"
-                                                id="slideProduct"
-                                            >
+                                    <div className="col-lg-5 col-md-12 col-12 product-gallery">
+                                        <Carousel
+                                            swipeable={true}
+                                            infinite={true}
+                                            showStatus={false} showIndicators={false}
+                                        >{
+                                            image.map((i, index) => (
                                                 <div
-                                                    className="swiper-wrapper"
-                                                    id="swiper-wrapper-341a37665db0ffb3"
-                                                    aria-live="polite"
-                                                    style={{transform: "translate3d(0px, 0px, 0px)"}}
+                                                    key={index}
+                                                    className="product-gallery--photo swiper-slide swiper-slide-next"
+                                                    style={{width: "100%"}}
                                                 >
-                                                    <div
-                                                        className="product-gallery--photo swiper-slide swiper-slide-next"
-                                                        data-image={product.image}
-                                                        role="group"
-                                                        aria-label=" / "
-                                                        style={{width: 372}}
-                                                    >
-                                                        <div className="product-gallery--item boxlazy-img">
-                                                            <div className="boxlazy-img--insert lazy-img--prod">
-                                                                <a
-                                                                    data-fancybox="gallery"
-                                                                    className="boxlazy-img--aspect"
-                                                                    href="//product.hstatic.net/200000722513/product/1_17f74834dacc4eb99ad85d3637bfae65_master.png"
-                                                                >
-                                                                    <img
-                                                                        src={product.image}
-                                                                        className="gallery-demo swiper-lazy"
-                                                                        alt="img"
-                                                                    />
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <img src={i.url}
+                                                         className="gallery-demo swiper-lazy"
+                                                         alt="img"
+                                                    />
                                                 </div>
-                                                <span
-                                                    className="swiper-notification"
-                                                    aria-live="assertive"
-                                                    aria-atomic="true"
-                                                />
-                                            </div>
-                                        </div>
+                                            ))
+                                        }
+                                        </Carousel>
                                     </div>
-                                    <div className="col-lg-8 col-md-12 col-12 product-info">
+                                    <div className="col-lg-6 col-md-12 col-12 product-info">
                                         <div className="info-wrapper">
                                             <div className="info-header">
                                                 <div className="info-content">
@@ -137,38 +121,79 @@ export function ProductD() {
                                                                  <CurrencyFormatter amount={product?.price}/> đ
                                                             </span>
                                                         </div>
-                                                        <div className="product-actions" >
+                                                        <div className="product-actions">
                                                             <div className="quantity" style={{margin: "25px 0px "}}>
-                                                                <button className="btn btn-primary" style={{marginRight: "5px"}}
-                                                                    onClick={() =>
-                                                                        setQuantity((prev) => (prev === 1 ? 1 : prev - 1))
-                                                                    }
-                                                                >
-                                                                    -
-                                                                </button>
-                                                                <span style={{marginRight: "7px"}}>
-                                                                {quantity}
-                                                                </span>
-                                                                <button className="btn btn-primary"
-                                                                    onClick={() => setQuantity((prev) => prev + 1)}>+
-                                                                </button>
+                                                                <div className="item-quan">
+                                                                    <div className="container-quantity_cart">
+                                                                        <button type="button" className="btn-left"
+                                                                                onClick={() =>
+                                                                                    setQuantity((prev) => (prev === 1 ? 1 : prev - 1))
+                                                                                }>
+                                                                            <svg
+                                                                                width={16}
+                                                                                height={16}
+                                                                                viewBox="0 0 16 16"
+                                                                                fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                            >{
+                                                                                quantity > 1 ?
+                                                                                    <path d="M13.3332 8H7.99984H2.6665"
+                                                                                          stroke={"#111111"}
+                                                                                          strokeWidth="2"
+                                                                                          strokeLinecap="round"/> :
+                                                                                    <path
+                                                                                        d="M13.3332 8H7.99984H2.6665"
+                                                                                        stroke="#cfcfcf"
+                                                                                        strokeWidth={2}
+                                                                                        strokeLinecap="round"
+                                                                                    />
+                                                                            }
+                                                                            </svg>
+                                                                        </button>
+                                                                        <input
+                                                                            readOnly={true}
+                                                                            value={quantity}
+                                                                            type="text"
+                                                                            size={4}
+                                                                            min={1}
+                                                                            className="input-quantity_cart"
+                                                                        />
+                                                                        <button type="button" className="btn-right"
+                                                                                onClick={() => setQuantity((prev) => prev + 1)}>
+                                                                            <svg
+                                                                                width={16}
+                                                                                height={16}
+                                                                                viewBox="0 0 16 16"
+                                                                                fill="none"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                            >
+                                                                                <path
+                                                                                    d="M8.00033 13.3334V8.00008M8.00033 8.00008V2.66675M8.00033 8.00008H13.3337M8.00033 8.00008H2.66699"
+                                                                                    stroke="#111111"
+                                                                                    strokeWidth={2}
+                                                                                    strokeLinecap="round"
+                                                                                />
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div className="action-buys" >
+                                                            <div className="action-buys">
                                                                 <button
                                                                     type="button"
                                                                     className="button btn-buynow"
-                                                                    onClick={() =>(
+                                                                    onClick={() => (
                                                                         toast("Đã thêm vào giỏ hàng !"),
-                                                                        dispatch(
-                                                                            addToCart({
-                                                                                id: product.id,
-                                                                                name: product.name,
-                                                                                price: product.price,
-                                                                                img: product.image,
-                                                                                quantity,
-                                                                            })
-                                                                        )
-                                                                        )
+                                                                            dispatch(
+                                                                                addToCart({
+                                                                                    id: product.id,
+                                                                                    name: product.name,
+                                                                                    price: product.price,
+                                                                                    img: product.image,
+                                                                                    quantity,
+                                                                                })
+                                                                            )
+                                                                    )
 
                                                                     }
 
