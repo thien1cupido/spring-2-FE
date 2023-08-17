@@ -4,6 +4,8 @@ const initialState = {
     products: [],
 };
 
+
+
 export const cartSlice = createSlice({
     name: "cart",
     initialState,
@@ -14,6 +16,13 @@ export const cartSlice = createSlice({
                 item.quantity += action.payload.quantity;
             } else {
                 state.products.push(action.payload);
+            }
+        },
+        updateCartItemQuantity: (state, action) => {
+            const { id, quantity } = action.payload;
+            const item = state.products.find((item) => item.id === id);
+            if (item) {
+                item.quantity = quantity;
             }
         },
         removeItem: (state,action) => {

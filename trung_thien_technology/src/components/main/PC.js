@@ -102,7 +102,7 @@ export function PC() {
                                                                 id: pc.id,
                                                                 name: pc.name,
                                                                 price: pc.price,
-                                                                img: pc.image,
+                                                                image: pc.image,
                                                                 quantity: 1
                                                             })
                                                         ))

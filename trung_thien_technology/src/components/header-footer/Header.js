@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {NavLink, useSearchParams} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {resetCart} from "../../redux/ShoppingCartReducer";
+import * as shoppingCart from "../../service/ShoppingCartService";
 
 
 export function Header() {
@@ -11,12 +13,22 @@ export function Header() {
     const [isLogin, setIsLogin] = useState();
     const token = localStorage.getItem('token');
     const [username, setUsername] = useState("");
-    const products = useSelector((state) => state.cart.products);
+    const [role, setRole] = useState("");
+    const product = useSelector((state) => state.cart.products);
+    const saveShoppingCart = async () => {
+        await shoppingCart.saveShoppingCart(
+            product.map(p => ({
+                id: +p.id,
+                quantity: +p.quantity,
+            }))
+        );
+    }
 
-
+    const dispatch = useDispatch();
     useEffect(() => {
         const getToken = async () => {
             setUsername(localStorage.getItem('username'));
+            setRole(localStorage.getItem('role'));
         }
         getToken();
         if (token) {
@@ -68,7 +80,6 @@ export function Header() {
                                             <source media="(min-width: 1024px)"
                                                     srcSet="../Logo.png"/>
                                             <img className="img-responsive logoimg ls-is-cached lazyloaded"
-                                                 data-src="https://file.hstatic.net/200000636033/file/logo_fd11946b31524fbe98765f34f3de0628.svg"
                                                  src="../Logo.png" alt="LOGO"/>
                                         </picture>
                                     </NavLink>
@@ -80,33 +91,35 @@ export function Header() {
                             >
                                 <div className="header-action-item main-header--search ">
                                     <div className="header-action_dropdown_mb search-box wpo-wrapper-search">
-                                            <Formik initialValues={{
-                                                searchProduct:""
-                                            }}
+                                        <Formik initialValues={{
+                                            searchProduct: ""
+                                        }}
                                                 onSubmit={(values) => {
                                                     const res = async () => {
-                                                        navigate("/all-product?searchProduct="+values.searchProduct);
+                                                        navigate("/all-product?searchProduct=" + values.searchProduct);
                                                     }
                                                     res();
-                                            }}>
+                                                }}>
                                             <Form
-                                            className="searchform-product ultimate-search">
-                                            <div className="wpo-search-inner">
-                                                <Field  className="input-search"
-                                                       name="searchProduct" maxLength="40" autoComplete="off" type="text"
-                                                       size="20" placeholder="Bạn cần tìm gì?"/>
-                                            </div>
-                                            <button type="submit" className="btn-search btn" id="btn-search">
-                                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M10.9999 19C15.4182 19 18.9999 15.4183 18.9999 11C18.9999 6.58172 15.4182 3 10.9999 3C6.5816 3 2.99988 6.58172 2.99988 11C2.99988 15.4183 6.5816 19 10.9999 19Z"
-                                                        stroke="#111111" strokeWidth="2" strokeLinecap="round"
-                                                        strokeLinejoin="round"/>
-                                                    <path d="M20.9999 21L16.6499 16.65" stroke="#111111"
-                                                          strokeWidth="2" strokeLinecap="round"
-                                                          strokeLinejoin="round"/>
-                                                </svg>
-                                            </button>
+                                                className="searchform-product ultimate-search">
+                                                <div className="wpo-search-inner">
+                                                    <Field className="input-search"
+                                                           name="searchProduct" maxLength="40" autoComplete="off"
+                                                           type="text"
+                                                           size="20" placeholder="Bạn cần tìm gì?"/>
+                                                </div>
+                                                <button type="submit" className="btn-search btn" id="btn-search">
+                                                    <svg viewBox="0 0 24 24" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M10.9999 19C15.4182 19 18.9999 15.4183 18.9999 11C18.9999 6.58172 15.4182 3 10.9999 3C6.5816 3 2.99988 6.58172 2.99988 11C2.99988 15.4183 6.5816 19 10.9999 19Z"
+                                                            stroke="#111111" strokeWidth="2" strokeLinecap="round"
+                                                            strokeLinejoin="round"/>
+                                                        <path d="M20.9999 21L16.6499 16.65" stroke="#111111"
+                                                              strokeWidth="2" strokeLinecap="round"
+                                                              strokeLinejoin="round"/>
+                                                    </svg>
+                                                </button>
                                             </Form>
                                         </Formik>
                                         <div id="ajaxSearchResults" className="smart-search-wrapper ajaxSearchResults"
@@ -195,7 +208,8 @@ export function Header() {
                                             stroke="white" strokeWidth="2" strokeLinecap="round"
                                             strokeLinejoin="round"/>
 									</svg>
-									<span className="count-holder"><span className="count">{products.length}</span></span>
+									<span className="count-holder"><span
+                                        className="count">{product.length}</span></span>
 								</span>
                                             <span className="box-text">
 									<span className="txtnw">Giỏ hàng</span>
@@ -250,7 +264,6 @@ export function Header() {
                 fill="#ffffff"/>
 		</svg>
 	</span>
-
                                     </div>
 
                                     <div className="header-action_dropdown account-dropdown">
@@ -292,9 +305,18 @@ export function Header() {
                                                 </div>
                                                 <div className="actions">
                                                     {isLogin ?
-                                                        <button className="js-account" onClick={() => handlerLogout()
-                                                        } data-box="acc-register-box">ĐĂNG XUẤT
-                                                        </button> : <NavLink to={"/login"} style={{
+                                                        role !== "ROLE_ADMIN" ?
+                                                            <button className="js-account"
+                                                                    onClick={() => (
+                                                                        // saveShoppingCart() ,
+                                                                            dispatch(resetCart()),
+                                                                            handlerLogout())}
+                                                            >ĐĂNG XUẤT
+                                                            </button> : <button className="js-account"
+                                                                                onClick={() =>
+                                                                                    handlerLogout()
+                                                                                }>ĐĂNG XUẤT
+                                                            </button> : <NavLink to={"/login"} style={{
                                                             width: "100%",
                                                             textDecoration: "none"
                                                         }}>

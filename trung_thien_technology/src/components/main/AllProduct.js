@@ -10,9 +10,8 @@ import {useDispatch} from "react-redux";
 
 export function AllProduct() {
     const dispatch = useDispatch();
-    const [searchParam, setSearchParam] = useSearchParams()
+    const [searchParam] = useSearchParams()
     const [nameSearch, setNameSearch] = useState("")
-
 
     const [pageCount, setPageCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
@@ -40,7 +39,7 @@ export function AllProduct() {
     }, [currentPage, searchParam, nameSearch])
     return (
         <>
-            <div className="container" style={{height: "120vh"}}>
+            <div className="container" style={{height: "150vh"}}>
                 <div id="breadcrumb" style={{marginTop: "15px"}}>
                     <ol itemScope="" itemType="http://schema.org/BreadcrumbList">
                         <li
@@ -94,13 +93,13 @@ export function AllProduct() {
                 </div>
                 <div className="product-list d-flex flex-wrap justify-content-center">
                     {
-                        product.length === 0 && nameSearch !== ""?
+                        pageCount<1 && nameSearch !== ""?
                             <h3 style={{color: "red",marginTop:"150px"}}>Không tìm thấy kết quả</h3>:
                             product.map((p, index) =>
                                 (
                                     <div className="p-item" key={index}>
                                         <div className="p-container">
-                                            <a href="/pc-mega-songoku.html" className="p-img">
+                                            <Link to={`/product-detail/${p.id}`} className="p-img">
                                                 <span className="icon-offer"/>
                                                 <img
                                                     className="lazy loaded"
@@ -109,9 +108,9 @@ export function AllProduct() {
                                                     alt="PC MEGA  SONGOKU"
                                                     data-was-processed="true"
                                                 />
-                                            </a>
+                                            </Link>
                                             <h3 className="p-name">
-                                                <a href="/pc-mega-songoku.html">{p.name}</a>
+                                                <Link to={`/product-detail/${p.id}`}>{p.name}</Link>
                                             </h3>
                                             <span className="p-price">
                                     <CurrencyFormatter amount={p.price}/> đ</span>
@@ -127,7 +126,7 @@ export function AllProduct() {
                                                                 id: p.id,
                                                                 name: p.name,
                                                                 price: p.price,
-                                                                img: p.image,
+                                                                image: p.image,
                                                                 quantity: 1
                                                             })
                                                         ))
@@ -139,8 +138,8 @@ export function AllProduct() {
                     }
                 </div>
                 {
-                    pageCount > 1 ? (
-                        <div className="row mt-3 mb-5">
+                    pageCount > 0 ? (
+                        <div className="row mt-3 mb-5" style={{display:"block"}}>
                             <div className="d-flex col-12 justify-content-end">
                                 <div className="d-grid">
                                     <ReactPaginate

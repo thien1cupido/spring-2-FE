@@ -200,7 +200,7 @@ export function SideBar2() {
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/may-tinh-ban-van-phong-office-word.html">
+                                                    <a >
                                                         Văn phòng (office, word)
                                                     </a>
                                                 </div>
@@ -300,7 +300,7 @@ export function SideBar2() {
                                             </div>
                                         </div>
                                         <div className="box-cate">
-                                            <a href="javascript:void(0)" className="cat2">
+                                            <a  className="cat2">
                                                 Khoảng giá
                                             </a>
                                             <a href="/may-bo-mega.html?max=5000000">Dưới 5 triệu</a>
@@ -371,17 +371,17 @@ export function SideBar2() {
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/man-hinh-lg.html">
+                                                    <a >
                                                         Màn hình LG&nbsp;&nbsp;
                                                         <i className="fa fa-angle-right" aria-hidden="true"/>
                                                     </a>
                                                     <div className="list-sub-hover">
-                                                        <a href="/gaming-ultragear.html">Gaming - UltraGear</a>
-                                                        <a href="/qhd-uhd-ultrafine.html">
+                                                        <a>Gaming - UltraGear</a>
+                                                        <a >
                                                             QHD / UHD - Ultrafine
                                                         </a>
-                                                        <a href="/219-ultrawide.html">21:9 - Ultrawide</a>
-                                                        <a href="/ips-led.html">IPS / LED</a>
+                                                        <a >21:9 - Ultrawide</a>
+                                                        <a >IPS / LED</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -479,7 +479,7 @@ export function SideBar2() {
                                             </div>
                                         </div>
                                         <div className="box-cate">
-                                            <a href="javascript:void(0)" className="cat2">
+                                            <a  className="cat2">
                                                 Khoảng giá
                                             </a>
                                             <a href="/man-hinh-may-tinh.html?max=2000000&min=1500000">
@@ -676,7 +676,7 @@ export function SideBar2() {
                                             className="box-cate"
                                             style={{width: "300px !important", display: "none"}}
                                         >
-                                            <a href="javascript:void(0)" className="cat2">
+                                            <a  className="cat2">
                                                 Nhu cầu sử dụng
                                             </a>
                                             <a href="/may-tinh-xach-tay.html?filter=%2C752%2C">
@@ -782,98 +782,98 @@ export function SideBar2() {
                                                         <i className="fa fa-angle-right" aria-hidden="true"/>
                                                     </a>
                                                     <div className="list-sub-hover">
-                                                        <a href="/gt-series.html-1">GT Series</a>
-                                                        <a href="/gl-series.html-1">GL Series</a>
-                                                        <a href="/gp-series.html-1">GP Series</a>
-                                                        <a href="/gs-series.html-1">GS Series</a>
-                                                        <a href="/ge-series.html-1">GE Series</a>
-                                                        <a href="/gf-series.html-1">GF Series</a>
-                                                        <a href="/gv-series.html-1">GV Series</a>
+                                                        <a>GT Series</a>
+                                                        <a >GL Series</a>
+                                                        <a >GP Series</a>
+                                                        <a >GS Series</a>
+                                                        <a >GE Series</a>
+                                                        <a >GF Series</a>
+                                                        <a>GV Series</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="box-cate">
                                             <div className="item-sub">
-                                                <a href="/nhu-cau-su-dung.html-1" className="cat2">
+                                                <a  className="cat2">
                                                     Nhu cầu sử dụng
                                                 </a>
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/hoc-tap-van-phong.html">Học tập - Văn phòng</a>
+                                                    <a>Học tập - Văn phòng</a>
                                                 </div>
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/ky-thuat-thiet-ke-do-hoa.html">
+                                                    <a >
                                                         Kỹ Thuật - Thiết kế đồ họa
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/laptop-2-in-1.html">Laptop 2 in 1</a>
+                                                    <a >Laptop 2 in 1</a>
                                                 </div>
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/workstation.html">Workstation</a>
+                                                    <a >Workstation</a>
                                                 </div>
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/cao-cap-doanh-nhan.html">Cao cấp - Doanh nhân</a>
+                                                    <a >Cao cấp - Doanh nhân</a>
                                                 </div>
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/giai-tri-game.html">Giải Trí - Game</a>
+                                                    <a >Giải Trí - Game</a>
                                                 </div>
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/card-do-hoa-roi.html">Card đồ họa rời</a>
+                                                    <a>Card đồ họa rời</a>
                                                 </div>
                                             </div>
                                             <div className="item-sub">
                                                 <div className="position-relative">
-                                                    <a href="/mong-nhe-sang-trong-ultrabook.html">
+                                                    <a>
                                                         Mỏng nhẹ - Sang trọng ( UltraBook)
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="box-cate">
-                                            <a href="javascript:void(0)" className="cat2">
+                                            <a  className="cat2">
                                                 Khoảng giá
                                             </a>
-                                            <a href="/may-tinh-xach-tay.html?max=5000000">Dưới 5 triệu</a>
-                                            <a href="/may-tinh-xach-tay.html?max=7000000&min=5000000">
+                                            <a >Dưới 5 triệu</a>
+                                            <a>
                                                 5 triệu - 7 triệu
                                             </a>
-                                            <a href="/may-tinh-xach-tay.html?max=10000000&min=7000000">
+                                            <a >
                                                 7 triệu - 10 triệu
                                             </a>
-                                            <a href="/may-tinh-xach-tay.html?max=15000000&min=10000000">
+                                            <a >
                                                 10 triệu - 15 triệu
                                             </a>
-                                            <a href="/may-tinh-xach-tay.html?max=20000000&min=15000000">
+                                            <a >
                                                 15 triệu - 20 triệu
                                             </a>
-                                            <a href="/may-tinh-xach-tay.html?max=25000000&min=20000000">
+                                            <a >
                                                 20 triệu - 25 triệu
                                             </a>
-                                            <a href="/may-tinh-xach-tay.html?max=35000000&min=25000000">
+                                            <a >
                                                 25 triệu - 35 triệu
                                             </a>
-                                            <a href="/may-tinh-xach-tay.html?min=35000000">Trên 35 triệu</a>
+                                            <a >Trên 35 triệu</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="item formated">
-                                <a href="/linh-kien-may-tinh.html" id="cat5">
+                                <a  id="cat5">
                                     <i
                                         className="cat-thumb"
                                         style={{

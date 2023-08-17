@@ -5,12 +5,40 @@ import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
+import {addToCart, removeItem, removeItemFromCart, resetCart} from "../../redux/ShoppingCartReducer";
+import * as shoppingCart from "../../service/ShoppingCartService";
+import {useDispatch} from "react-redux";
 
 
 export function Login() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [quantity, setQuantity] = useState(1);
+    const shoppingCartApi = () => {
+        shoppingCart.getAllShoppingCart()
+            .then((response) => {
+                const cartItemsFromDatabase = response.data;
+                let quantitys;
+                cartItemsFromDatabase.forEach((item) => {
+                    quantitys = item.quantity;
+                    if (quantitys > 1) {
+                        for (let i = 0; i <= quantitys; i++) {
+                            dispatch(addToCart({
+                                ...item,
+                                quantity
+                            }));
+                        }
+                    } else {
+                        dispatch(addToCart(item));
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error('Lỗi khi lấy thông tin giỏ hàng:', error);
+            })
+    }
     useEffect(() => {
-        document.title="Đăng nhập";
+        document.title = "Đăng nhập";
         window.scrollTo(0, 0);
     }, [])
     return (
@@ -23,7 +51,7 @@ export function Login() {
                             itemScope=""
                             itemType="http://schema.org/ListItem"
                         >
-                            <Link to="/"  itemProp="item">
+                            <Link to="/" itemProp="item">
                                 <span itemProp="name">Trang chủ</span>
 
                             </Link>
@@ -38,7 +66,7 @@ export function Login() {
                             itemScope=""
                             itemType="http://schema.org/ListItem"
                         >
-                            <Link  to="/login" itemProp="item" className="current">
+                            <Link to="/login" itemProp="item" className="current">
                                 <span itemProp="name">Đăng nhập</span>
                             </Link>
                             <meta itemProp="position" content={2}/>
@@ -65,6 +93,7 @@ export function Login() {
                                     localStorage.setItem("role", response.data.role);
                                 }
                                 navigate("/");
+                                shoppingCartApi();
                             } catch (e) {
                                 toast.error(e.response.data)
                             } finally {
@@ -93,10 +122,10 @@ export function Login() {
                                                 className="form-control"
                                             />
                                         </td>
-                                        <td> <ErrorMessage
+                                        <td><ErrorMessage
                                             name="username"
                                             component="span"
-                                            style={{color:"red"}}
+                                            style={{color: "red"}}
                                         /></td>
                                     </tr>
                                     <tr>
@@ -111,7 +140,7 @@ export function Login() {
                                         <td><ErrorMessage
                                             name="password"
                                             component="span"
-                                            style={{color:"red"}}
+                                            style={{color: "red"}}
                                         /></td>
                                     </tr>
                                     <tr>

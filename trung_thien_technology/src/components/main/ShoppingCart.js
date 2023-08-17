@@ -2,19 +2,22 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {CurrencyFormatter} from "../../util/ConverUnit";
-import {decrement, increment, removeItem} from "../../redux/ShoppingCartReducer";
+import {
+    decrement,
+    increment,
+    removeItem,
+    resetCart
+} from "../../redux/ShoppingCartReducer";
 import * as alert from "../../util/Alert";
 import Swal from "sweetalert2";
-import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import {PayPalButton} from "react-paypal-button-v2";
 
 export const ShoppingCart = () => {
     const products = useSelector((state) => state.cart.products);
     const dispatch = useDispatch();
     const [isLogin, setIsLogin] = useState(false);
     const token = localStorage.getItem('token');
-    const navigate = useNavigate()
-
 
     const totalPrice = () => {
         let total = 0;
@@ -23,6 +26,9 @@ export const ShoppingCart = () => {
         });
         return total;
     };
+    const paymemt = () => {
+        dispatch(resetCart())
+    }
     useEffect(() => {
         if (token) {
             setIsLogin(true);
@@ -39,7 +45,7 @@ export const ShoppingCart = () => {
     return (
         <>
             <div style={{
-                width:"1330px",
+                width: "1350px",
                 marginRight: "auto",
                 marginLeft: "auto",
                 maxWidth: "100%",
@@ -63,17 +69,18 @@ export const ShoppingCart = () => {
                 <div className=" bg-white overflow-hidden d-flex">
                     {
                         products.length === 0 ?
-                            <h3 style={{color: "red", textAlign: "center",width:"75%"}}>Không có sản phẩm
-                                trong giỏ hàng</h3> :
+                            <h3 style={{color: "red", textAlign: "center", width: "75%", lineHeight: "390px"}}>Không có
+                                sản phẩm
+                                nào trong giỏ hàng</h3> :
 
-                            <table id="tbl-cart-item" className="table-mega" style={{width:"75%"}}>
+                            <table id="tbl-cart-item" className="table-mega" style={{width: "70%"}}>
                                 <thead>
                                 <tr>
-                                    <td width="12%" style={{paddingLeft: "7px"}}>Sản phẩm</td>
-                                    <td width="30%"></td>
+                                    <td width="13%" style={{paddingLeft: "7px"}}>Sản phẩm</td>
+                                    <td width="28%"></td>
                                     <td width="15%" style={{paddingLeft: "7px"}}>Đơn giá</td>
-                                    <td width="15%" style={{paddingLeft: "7px"}}>Số lượng</td>
-                                    <td width="18%" style={{paddingLeft: "7px"}}>Thành tiền</td>
+                                    <td width="16%" style={{paddingLeft: "7px"}}>Số lượng</td>
+                                    <td width="15%" style={{paddingLeft: "7px"}}>Thành tiền</td>
                                     <td width="10%" style={{paddingLeft: "7px"}}>Xóa</td>
                                 </tr>
                                 </thead>
@@ -82,7 +89,7 @@ export const ShoppingCart = () => {
                                     products?.map((items, index) => (
                                         <tr className="item js-item-row" key={index}>
                                             <td>
-                                                <img src={items.img}
+                                                <img src={items.image}
                                                      style={{
                                                          verticalAlign: "middle",
                                                          marginRight: "10px",
@@ -208,23 +215,21 @@ export const ShoppingCart = () => {
                                             </button>
                                         </div>
                                     </td>
-                                    <td colSpan="3" align="right" className="pr-2">
-                                        <b className="total-cart-price text-18"
-                                           style={{color: "red", cursor: "default"}}>Tổng
-                                            tiền: </b>
-                                        <b className="total-cart-price text-18"
-                                           style={{color: "red", cursor: "default"}}><CurrencyFormatter
-                                            amount={totalPrice() + " đ"}/></b>
+
+                                    <td colSpan="3" style={{textAlign: "right"}} className="pr-2">
+                                        <button className="btn btn-red" onClick={() => dispatch(resetCart())}>Xóa
+                                            tất cả
+                                        </button>
                                     </td>
                                 </tr>
                                 </tfoot>
                             </table>
                     }
-                    <div className="col-3 p-2" style={{border:"solid 1px #eee"}}>
+                    <div className="col-4 p-2" style={{border: "solid 1px #eee"}}>
                         <h3 style={{
                             textTransform: "uppercase",
                             fontSize: "16px",
-                            fontWeight:"700",
+                            fontWeight: "700",
                             background: "#eee",
                             padding: "11px 10px"
                         }}>Tổng tiền</h3>
@@ -240,9 +245,6 @@ export const ShoppingCart = () => {
                             <tr>
                                 <td>Khuyến mãi khi dùng Voucher</td>
                                 <td align="right">
-                <span data-discount={0} id="price-discount">
-                </span>
-
                                 </td>
                             </tr>
                             <tr>
@@ -260,17 +262,39 @@ export const ShoppingCart = () => {
                             </tbody>
                         </table>
                         <div className="cart-btn">
-                            <a className="btn btn-primary">
-                                Mua trả góp
-                            </a>
+
                             {
                                 isLogin === true ?
-                                    (<button type="submit" className="btn btn-red">
+                                    (<>
+                                            <button type="submit" className="btn btn-red">
+                                                <i className="fa fa-check"/> Đặt hàng
+                                            </button>
+                                            <PayPalButton
+                                                amount={(Math.ceil((totalPrice()) / 23000)) !== 0 ? (Math.ceil((totalPrice()) / 23000)) : "0.01"
+                                                }
+                                                onApprove={async (data, actions) => {
+                                                    // Gửi dữ liệu đơn hàng đến máy chủ của bạn và đợi phản hồi
+                                                    // const res = await OrdersService.saveOrders(); // Giả sử hàm này trả về một promise
+                                                    // if (res.status !== 400) {
+                                                    //     // Nếu máy chủ phản hồi thành công, thực hiện việc thanh toán
+                                                    //     const captureResult = await actions.order.capture();
+                                                    //     console.log(captureResult);
+                                                    //     toast.success("Giao dịch hoàn thành");
+                                                    // } else {
+                                                    //     alert("Không thể lưu đơn hàng trên máy chủ");
+                                                    // }
+                                                }
+                                                }
+
+                                            />
+                                        </>
+                                    ) : (
+                                        <>
+                                        <Link to="/login" type="button" className="btn btn-red"
+                                               onClick={() => toast.warning("Vui lòng đăng nhập!!")}>
                                         <i className="fa fa-check"/> Đặt hàng
-                                    </button>) : (<Link to="/login" type="button" className="btn btn-red"
-                                                        onClick={() => toast.warning("Vui lòng đăng nhập!!")}>
-                                        <i className="fa fa-check"/> Đặt hàng
-                                    </Link>)
+                                    </Link>
+                                        </>)
                             }
                         </div>
                     </div>

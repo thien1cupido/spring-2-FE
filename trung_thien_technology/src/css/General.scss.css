@@ -882,10 +882,10 @@ svg.icon {
     height: var(--width);
     line-height: var(--width);
     border-radius: 50%;
-    background: #f3f3f3;
+    background: #000000;
     text-align: center;
     font-weight: 600;
-    color: #000;
+    color: #ffffff;
     margin: 0 5px;
     position: relative;
     display: flex;
@@ -900,16 +900,17 @@ svg.icon {
     height: 2px;
     display: none;
     right: 0;
+    z-index: -1;
     bottom: 0;
-    background: currentColor;
+    background: rgb(0, 15, 255);
     width: 0;
     -webkit-transition: width .3s ease;
     transition: width .3s ease;
 }
 
 .pagination a.active-page, .pagination a:hover {
-    color: #fff;
-    background: #000;
+    color: #ffffff;
+    background: rgba(59, 56, 56, 0.75);
 }
 
 .pagination a.active-page:after, .pagination a:hover:after {
@@ -938,7 +939,7 @@ svg.icon {
 }
 
 .pagination a.prev-page:hover:before, .pagination a.next-page:hover:before {
-    border-color: #fff;
+    border-color: #000000;
 }
 
 @media (max-width: 991px) {

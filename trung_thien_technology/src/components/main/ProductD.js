@@ -17,7 +17,6 @@ export function ProductD() {
     const [title, setTitle] = useState("");
 
     const dispatch = useDispatch();
-    console.log(image)
     const getProductApi = async () => {
         const res = await productService.findProductById(param.id);
         setTitle(res.data.name)
@@ -27,6 +26,8 @@ export function ProductD() {
         const res = await productService.findAllImageById(param.id);
         setImage(res.data);
     }
+    const cartItemsJSON = localStorage.getItem('cartItems');
+    const cartItems = JSON.parse(cartItemsJSON);
 
     useEffect(() => {
         getImageApi();
@@ -189,7 +190,7 @@ export function ProductD() {
                                                                                     id: product.id,
                                                                                     name: product.name,
                                                                                     price: product.price,
-                                                                                    img: product.image,
+                                                                                    image: product.image,
                                                                                     quantity,
                                                                                 })
                                                                             )
@@ -1023,12 +1024,6 @@ export function ProductD() {
                     </a>{" "}
                       với mức giá cực kỳ hấp dẫn.
                   </span>
-                                            </p>
-                                            <p style={{textAlign: "center"}}>
-                                                <img
-                                                    alt="GEARVN - Laptop Gaming MSI Stealth 16 Mercedes AMG A13VG 289VN"
-                                                    src="//file.hstatic.net/200000722513/file/gearvn-laptop-gaming-msi-stealth-16-mercedes-amg-a13vg-289vn-1_56e0cde74ea24fec9371c0748d905045.png"
-                                                />
                                             </p>
                                             <h3 style={{textAlign: "justify"}}>
                                                 <strong>

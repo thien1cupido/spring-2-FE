@@ -6,3 +6,7 @@ export const makeRequest = axios.create({
         Authorization: "bearer " + process.env.REACT_APP_API_TOKEN,
     },
 });
+
+export const getToken = async ()=>{
+    return localStorage.getItem("token")
+}
