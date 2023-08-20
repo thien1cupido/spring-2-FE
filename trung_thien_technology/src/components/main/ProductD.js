@@ -26,8 +26,6 @@ export function ProductD() {
         const res = await productService.findAllImageById(param.id);
         setImage(res.data);
     }
-    const cartItemsJSON = localStorage.getItem('cartItems');
-    const cartItems = JSON.parse(cartItemsJSON);
 
     useEffect(() => {
         getImageApi();
@@ -187,9 +185,9 @@ export function ProductD() {
                                                                         toast("Đã thêm vào giỏ hàng !"),
                                                                             dispatch(
                                                                                 addToCart({
-                                                                                    id: product.id,
+                                                                                    id: +product.id,
                                                                                     name: product.name,
-                                                                                    price: product.price,
+                                                                                    price: +product.price,
                                                                                     image: product.image,
                                                                                     quantity,
                                                                                 })

@@ -99,9 +99,9 @@ export function PC() {
                                                     toast("Đã thêm vào giỏ hàng !"),
                                                         dispatch(
                                                             addToCart({
-                                                                id: pc.id,
+                                                                id: +pc.id,
                                                                 name: pc.name,
-                                                                price: pc.price,
+                                                                price: +pc.price,
                                                                 image: pc.image,
                                                                 quantity: 1
                                                             })

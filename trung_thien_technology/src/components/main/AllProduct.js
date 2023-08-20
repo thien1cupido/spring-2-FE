@@ -123,9 +123,9 @@ export function AllProduct() {
                                                     toast("Đã thêm vào giỏ hàng !"),
                                                         dispatch(
                                                             addToCart({
-                                                                id: p.id,
+                                                                id: +p.id,
                                                                 name: p.name,
-                                                                price: p.price,
+                                                                price: +p.price,
                                                                 image: p.image,
                                                                 quantity: 1
                                                             })

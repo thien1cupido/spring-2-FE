@@ -307,10 +307,10 @@ export function Header() {
                                                     {isLogin ?
                                                         role !== "ROLE_ADMIN" ?
                                                             <button className="js-account"
-                                                                    onClick={() => (
-                                                                        // saveShoppingCart() ,
-                                                                            dispatch(resetCart()),
-                                                                            handlerLogout())}
+                                                                    onClick={ async () => (
+                                                                        await saveShoppingCart() ,
+                                                                            await dispatch(resetCart()),
+                                                                            await handlerLogout())}
                                                             >ĐĂNG XUẤT
                                                             </button> : <button className="js-account"
                                                                                 onClick={() =>

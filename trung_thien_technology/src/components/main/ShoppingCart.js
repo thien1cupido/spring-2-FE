@@ -2,16 +2,12 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {CurrencyFormatter} from "../../util/ConverUnit";
-import {
-    decrement,
-    increment,
-    removeItem,
-    resetCart
-} from "../../redux/ShoppingCartReducer";
+import {decrement, increment, removeItem, resetCart} from "../../redux/ShoppingCartReducer";
 import * as alert from "../../util/Alert";
 import Swal from "sweetalert2";
 import {toast} from "react-toastify";
 import {PayPalButton} from "react-paypal-button-v2";
+import * as shoppingCart from "../../service/ShoppingCartService";
 
 export const ShoppingCart = () => {
     const products = useSelector((state) => state.cart.products);
@@ -26,9 +22,18 @@ export const ShoppingCart = () => {
         });
         return total;
     };
-    const paymemt = () => {
-        dispatch(resetCart())
+
+
+    const saveOrder = () => {
+        return products.map(p => ({
+                id: +p.id,
+                quantity: +p.quantity,
+                price: +p.price
+            })
+        );
     }
+
+
     useEffect(() => {
         if (token) {
             setIsLogin(true);
@@ -270,30 +275,27 @@ export const ShoppingCart = () => {
                                                 <i className="fa fa-check"/> Đặt hàng
                                             </button>
                                             <PayPalButton
-                                                amount={(Math.ceil((totalPrice()) / 23000)) !== 0 ? (Math.ceil((totalPrice()) / 23000)) : "0.01"
+                                                amount={(Math.ceil((totalPrice()) / 23000)) !==0 ? (Math.ceil((totalPrice()) / 23000)) : "0.01"
                                                 }
                                                 onApprove={async (data, actions) => {
-                                                    // Gửi dữ liệu đơn hàng đến máy chủ của bạn và đợi phản hồi
-                                                    // const res = await OrdersService.saveOrders(); // Giả sử hàm này trả về một promise
-                                                    // if (res.status !== 400) {
-                                                    //     // Nếu máy chủ phản hồi thành công, thực hiện việc thanh toán
-                                                    //     const captureResult = await actions.order.capture();
-                                                    //     console.log(captureResult);
-                                                    //     toast.success("Giao dịch hoàn thành");
-                                                    // } else {
-                                                    //     alert("Không thể lưu đơn hàng trên máy chủ");
-                                                    // }
+                                                    try {
+                                                        await shoppingCart.paymentPayPal(saveOrder())
+                                                      await actions.order.capture();
+                                                        await dispatch(resetCart())
+                                                        toast.success("Giao dịch hoàn thành");
+                                                    } catch (e) {
+                                                        toast.error("Không thể lưu đơn hàng trên máy chủ");
+                                                    }
                                                 }
                                                 }
-
                                             />
                                         </>
                                     ) : (
                                         <>
-                                        <Link to="/login" type="button" className="btn btn-red"
-                                               onClick={() => toast.warning("Vui lòng đăng nhập!!")}>
-                                        <i className="fa fa-check"/> Đặt hàng
-                                    </Link>
+                                            <Link to="/login" type="button" className="btn btn-red"
+                                                  onClick={() => toast.warning("Vui lòng đăng nhập!!")}>
+                                                <i className="fa fa-check"/> Đặt hàng
+                                            </Link>
                                         </>)
                             }
                         </div>

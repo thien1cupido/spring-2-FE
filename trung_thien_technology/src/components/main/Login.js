@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
-import {addToCart, removeItem, removeItemFromCart, resetCart} from "../../redux/ShoppingCartReducer";
+import {addToCart} from "../../redux/ShoppingCartReducer";
 import * as shoppingCart from "../../service/ShoppingCartService";
 import {useDispatch} from "react-redux";
 
@@ -13,24 +13,18 @@ import {useDispatch} from "react-redux";
 export function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [quantity, setQuantity] = useState(1);
-    const shoppingCartApi = () => {
-        shoppingCart.getAllShoppingCart()
+    const shoppingCartApi = async () => {
+        await shoppingCart.getAllShoppingCart()
             .then((response) => {
                 const cartItemsFromDatabase = response.data;
-                let quantitys;
                 cartItemsFromDatabase.forEach((item) => {
-                    quantitys = item.quantity;
-                    if (quantitys > 1) {
-                        for (let i = 0; i <= quantitys; i++) {
-                            dispatch(addToCart({
-                                ...item,
-                                quantity
-                            }));
-                        }
-                    } else {
-                        dispatch(addToCart(item));
-                    }
+                    dispatch(addToCart({
+                        id: item.id,
+                        name: item.name,
+                        price: item.price,
+                        image: item.image,
+                        quantity: +item.quantity
+                    }))
                 });
             })
             .catch((error) => {
@@ -149,7 +143,7 @@ export function Login() {
                                             <div style={{position: "relative"}}>
                                                 <button type="submit" className="btn btn-secondary mr-3">Đăng nhập
                                                 </button>
-                                                <a href="/quen-mat-khau">Quên mật khẩu ?</a>
+                                                <a >Quên mật khẩu ?</a>
                                             </div>
                                         </td>
                                     </tr>
