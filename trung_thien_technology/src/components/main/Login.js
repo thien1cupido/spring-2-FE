@@ -116,26 +116,36 @@ export function Login() {
                                                 className="form-control"
                                             />
                                         </td>
-                                        <td><ErrorMessage
-                                            name="username"
-                                            component="span"
-                                            style={{color: "red"}}
-                                        /></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <ErrorMessage
+                                                name="username"
+                                                component="span"
+                                                style={{color: "red"}}
+                                            />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Mật khẩu</td>
                                         <td>
                                             <Field
-                                                type="password"
+                                            type="password"
+                                            name="password"
+                                            className="form-control"
+                                        />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <ErrorMessage
                                                 name="password"
-                                                className="form-control"
+                                                component="span"
+                                                style={{color: "red"}}
                                             />
                                         </td>
-                                        <td><ErrorMessage
-                                            name="password"
-                                            component="span"
-                                            style={{color: "red"}}
-                                        /></td>
                                     </tr>
                                     <tr>
                                         <td/>

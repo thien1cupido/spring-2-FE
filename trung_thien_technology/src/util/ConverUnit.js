@@ -9,3 +9,7 @@ export function CurrencyFormatter({ amount }) {
     const formattedAmount = amount?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     return <span>{formattedAmount}</span>;
 }
+export function DateFormatter2({ date }) {
+    const formattedDate = format(new Date(date), 'HH:mm-dd/MM/yyyy');
+    return <span>{formattedDate}</span>;
+}

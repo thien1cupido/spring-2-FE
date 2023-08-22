@@ -27,9 +27,8 @@ export const saveShoppingCart = async (shoppingCart) => {
     }
 }
 export const paymentPayPal = async (shoppingCart) => {
-    console.log(shoppingCart)
     try {
-        await axios.post("http://localhost:8080/api/order/save",shoppingCart,
+        await axios.post("http://localhost:8080/api/order/save-order-by-paypal",shoppingCart,
             {
                 headers: {
                     "Authorization": "Bearer " + await makeToken.getToken()

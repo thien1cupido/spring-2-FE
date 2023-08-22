@@ -5,12 +5,14 @@ import * as alert from "../../../util/Alert";
 import Swal from "sweetalert2";
 import * as productService from '../../../service/ProductService';
 import ReactPaginate from "react-paginate";
+import {useNavigate} from "react-router-dom";
 
 export function ProductList() {
     const [productList, setProductList] = useState([]);
     const [nameProduct, setNameProduct] = useState("");
     const [pageCount, setPageCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
+    const navigate = useNavigate();
     const getAllProductApi = async () => {
         try {
             const res = await productService.findAllProductAdmin(currentPage, nameProduct);
@@ -18,6 +20,7 @@ export function ProductList() {
             const totalPages = res.data.totalPages;
             setPageCount(totalPages);
         } catch (e) {
+            navigate("/");
             console.log(e)
         }
     }
@@ -32,7 +35,7 @@ export function ProductList() {
         document.title = "Danh sách sản phẩm";
         window.scrollTo(0, 0);
         getAllProductApi();
-    }, [currentPage,pageCount]);
+    }, [currentPage, pageCount]);
 
     if (!productList) {
         return null;
@@ -44,7 +47,7 @@ export function ProductList() {
                 <h1 style={{textAlign: "center"}}>Danh sách sản phẩm</h1>
                 <div className=" bg-white overflow-hidden d-flex">
                     {
-                        pageCount<2?
+                        pageCount < 2 ?
                             <h3 style={{color: "red", textAlign: "center", width: "80%"}}>Không tìm thấy sản phẩm</h3> :
                             <table id="tbl-cart-item" className="table-mega">
                                 <thead>

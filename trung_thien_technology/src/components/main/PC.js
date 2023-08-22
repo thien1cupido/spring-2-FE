@@ -13,12 +13,19 @@ export function PC() {
     const dispatch = useDispatch();
 
     const getAllPCApi = async () => {
+        try {
         const res = await productService.findAllProductByPC();
         setPC(res?.data)
+        }catch (e) {
+            console.log(e)
+        }
     }
     useEffect(() => {
         getAllPCApi();
     }, [])
+    if (!pc){
+        return null;
+    }
 
     const responsive = {
         desktop: {
@@ -50,9 +57,9 @@ export function PC() {
                 <div className="title">
                     <span className="h-title">Máy bộ</span>
                     <div className="sub_cat_title">
-                        <a href="" className="red viewall">
+                        <Link to={"/"} className="red viewall">
                             Xem tất cả <i className="fa fa-angle-double-right" aria-hidden="true"/>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div

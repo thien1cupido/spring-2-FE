@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import {toast} from "react-toastify";
 import {PayPalButton} from "react-paypal-button-v2";
 import * as shoppingCart from "../../service/ShoppingCartService";
+import * as orderService from "../../service/OrderService";
 
 export const ShoppingCart = () => {
     const products = useSelector((state) => state.cart.products);
@@ -74,9 +75,11 @@ export const ShoppingCart = () => {
                 <div className=" bg-white overflow-hidden d-flex">
                     {
                         products.length === 0 ?
+
                             <h3 style={{color: "red", textAlign: "center", width: "75%", lineHeight: "390px"}}>Không có
                                 sản phẩm
-                                nào trong giỏ hàng</h3> :
+                                nào trong giỏ hàng</h3>
+                            :
 
                             <table id="tbl-cart-item" className="table-mega" style={{width: "70%"}}>
                                 <thead>
@@ -222,7 +225,10 @@ export const ShoppingCart = () => {
                                     </td>
 
                                     <td colSpan="3" style={{textAlign: "right"}} className="pr-2">
-                                        <button className="btn btn-red" onClick={() => dispatch(resetCart())}>Xóa
+                                        <button className="btn btn-red" onClick={() =>
+                                            orderService.createOrder(saveOrder())
+                                        }
+                                        >Xóa
                                             tất cả
                                         </button>
                                     </td>
@@ -270,33 +276,49 @@ export const ShoppingCart = () => {
 
                             {
                                 isLogin === true ?
-                                    (<>
-                                            <button type="submit" className="btn btn-red">
+                                    <>{
+                                        products.length>0?
+                                        <>
+                                        <button type="submit" className="btn btn-red" onClick={() => {
+                                            try {
+                                                orderService.createOrder(saveOrder())
+                                                dispatch(resetCart());
+                                                toast.success("Đặt hàng thành công")
+                                            } catch (e) {
+                                                toast.error("Đặt hàng thất bại")
+                                            }
+                                        }}>
+                                            <i className="fa fa-check"/> Đặt hàng
+                                        </button>
+                                        <PayPalButton
+                                        amount={(Math.ceil((totalPrice()) / 23000)) !== 0 ? (Math.ceil((totalPrice()) / 23000)) : "0.01"}
+                                        onApprove={async (data, actions) => {
+                                            try {
+                                                await shoppingCart.paymentPayPal(saveOrder());
+                                                await actions.order.capture();
+                                                await dispatch(resetCart())
+                                                toast.success("Thanh toán thành công");
+                                            } catch (e) {
+                                                toast.error("Không thể lưu đơn hàng trên máy chủ");
+                                            }
+                                        }
+                                        }
+                                        onError={e=>{
+                                        toast.error("Thanh toán thất bại!!")
+                                        }
+                                        }
+                                        />
+                                        </>:
+                                            <button type="submit" className="btn btn-red" onClick={() => {
+                                                    toast.warning("Giỏ hàng trống!!")}
+                                                }>
                                                 <i className="fa fa-check"/> Đặt hàng
                                             </button>
-                                            <PayPalButton
-                                                amount={(Math.ceil((totalPrice()) / 23000)) !==0 ? (Math.ceil((totalPrice()) / 23000)) : "0.01"
-                                                }
-                                                onApprove={async (data, actions) => {
-                                                    try {
-                                                        await shoppingCart.paymentPayPal(saveOrder())
-                                                      await actions.order.capture();
-                                                        await dispatch(resetCart())
-                                                        toast.success("Giao dịch hoàn thành");
-                                                    } catch (e) {
-                                                        toast.error("Không thể lưu đơn hàng trên máy chủ");
-                                                    }
-                                                }
-                                                }
-                                            />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Link to="/login" type="button" className="btn btn-red"
-                                                  onClick={() => toast.warning("Vui lòng đăng nhập!!")}>
-                                                <i className="fa fa-check"/> Đặt hàng
-                                            </Link>
-                                        </>)
+                                    }</>:
+                                    <Link to="/login" type="button" className="btn btn-red"
+                                          onClick={() => toast.warning("Vui lòng đăng nhập!!")}>
+                                        <i className="fa fa-check"/> Đặt hàng
+                                    </Link>
                             }
                         </div>
                     </div>

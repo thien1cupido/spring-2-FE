@@ -2,6 +2,7 @@
 import './css/Libs.css';
 import './css/Main.scss.css';
 import './css/Angle.css';
+import './css/customer.scss.css';
 import React from "react";
 
 import {Footer} from "./components/header-footer/Footer";
@@ -14,6 +15,7 @@ import {Login} from "./components/main/Login";
 import {ToastContainer} from "react-toastify";
 import {AllProduct} from "./components/main/AllProduct";
 import {ProductList} from "./components/admin/product/ProductList";
+import {OrderHistory} from "./components/main/OrderHistory";
 
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
                 <Route path="/shopping-cart" element={<ShoppingCart/>}/>
                 <Route path="/product-detail/:id" element={<ProductD/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/order-history" element={<OrderHistory/>}/>
                 <Route path="/all-product" element={<AllProduct/>}/>
                 <Route path="/" element={<Main/>}/>
                 <Route path="/product/list" element={<ProductList/>}/>
